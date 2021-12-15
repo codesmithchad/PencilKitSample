@@ -17,7 +17,7 @@ final class ViewController: UIViewController {
     private var canvasView = PKCanvasView().then {
         $0.tool = PKInkingTool(.pen, color: .gray, width: 20)
         $0.drawingPolicy = .anyInput
-//        $0.backgroundColor = .clear
+        $0.backgroundColor = .clear //UIColor.black.withAlphaComponent(0.1)
     }
     private let toolPicker = PKToolPicker()
     private var rendition: Rendition?
@@ -33,11 +33,15 @@ final class ViewController: UIViewController {
     }
 
     private func setupUI() {
+        let bgImageView = getBgImage()
         let hStack = UIStackView(arrangedSubviews: getButtons()).then {
             $0.axis = .horizontal
             $0.spacing = 10
         }
-        view.addSubviews(canvasView, hStack)
+        view.addSubviews(bgImageView, canvasView, hStack)
+        bgImageView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
         canvasView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
@@ -67,6 +71,13 @@ final class ViewController: UIViewController {
 //            .disposed(by: disposeBag)
     }
 
+    private func getBgImage() -> UIImageView {
+        let data = try! Data(contentsOf: URL(string: "https://picsum.photos/1133/744")!) // 1133/744 4532/2976
+        let imageView = UIImageView(image: UIImage(data: data))
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }
+
     private func getButtons() -> [UIView] {
         saveButton.setTitle("save", for: .normal)
         deleteButton.setTitle("delete", for: .normal)
@@ -77,6 +88,9 @@ final class ViewController: UIViewController {
     private func saveToAlbum() {
 //        let image = canvasView.drawing.image(from: canvasView.bounds, scale: UIScreen.main.scale)
 //        UIImageWriteToSavedPhotosAlbum(image, self, #selector(savedAlert), nil)
+
+//        dump(canvasView.drawing.strokes)
+
         savedAlert()
     }
     @objc func savedAlert() {
@@ -85,10 +99,10 @@ final class ViewController: UIViewController {
         present(alert, animated: true)
     }
 
-    private func saveDrawing() {
-        let image = canvasView.drawing.image(from: canvasView.bounds, scale: UIScreen.main.scale)
-        self.rendition = Rendition(title: "rendit", image: image, drawing: canvasView.drawing)
-    }
+//    private func saveDrawing() {
+//        let image = canvasView.drawing.image(from: canvasView.bounds, scale: UIScreen.main.scale)
+//        self.rendition = Rendition(title: "rendit", image: image, drawing: canvasView.drawing)
+//    }
 
     private func deleteDrawing() {
         canvasView.drawing = PKDrawing()
