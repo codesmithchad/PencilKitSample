@@ -11,12 +11,17 @@ import RxCocoa
 import SnapKit
 import Then
 import PencilKit
+import PDFKit
 
 final class ViewController: UIViewController {
 
     private var canvasView = PKCanvasView().then {
         $0.tool = PKInkingTool(.pen, color: .gray, width: 20)
+        #if targetEnvironment(simulator)
         $0.drawingPolicy = .anyInput
+        #else
+        $0.drawingPolicy = .pencilOnly
+        #endif
         $0.backgroundColor = .clear //UIColor.black.withAlphaComponent(0.1)
     }
     private let toolPicker = PKToolPicker()
@@ -33,13 +38,13 @@ final class ViewController: UIViewController {
     }
 
     private func setupUI() {
-        let bgImageView = getBgImage()
+        let pdfViewerView = PDFViewerView()
         let hStack = UIStackView(arrangedSubviews: getButtons()).then {
             $0.axis = .horizontal
             $0.spacing = 10
         }
-        view.addSubviews(bgImageView, canvasView, hStack)
-        bgImageView.snp.makeConstraints {
+        view.addSubviews(pdfViewerView, canvasView, hStack)
+        pdfViewerView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
         canvasView.snp.makeConstraints {
@@ -69,13 +74,6 @@ final class ViewController: UIViewController {
 //                  self?.restoreDrawing()
 //              })
 //            .disposed(by: disposeBag)
-    }
-
-    private func getBgImage() -> UIImageView {
-        let data = try! Data(contentsOf: URL(string: "https://picsum.photos/1133/744")!) // 1133/744 4532/2976
-        let imageView = UIImageView(image: UIImage(data: data))
-        imageView.contentMode = .scaleAspectFit
-        return imageView
     }
 
     private func getButtons() -> [UIView] {
@@ -140,3 +138,41 @@ extension UIView {
     }
 }
 
+final class PDFViewerView: UIView {
+
+    static let samplePdfUrl = "https://juventudedesporto.cplp.org/files/sample-pdf_9359.pdf"
+
+    private lazy var pdfView = PDFView().then {
+        $0.displayMode = .singlePageContinuous
+        $0.autoScales = true
+        $0.displayDirection = .horizontal
+//        $0.delegate = self
+        $0.displayBox = .cropBox
+        $0.usePageViewController(true, withViewOptions: nil)
+    }
+
+    init(_ frame: CGRect = .zero) {
+        super.init(frame: frame)
+        setupUI()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    private func setupUI() {
+        backgroundColor = .white
+        addSubview(pdfView)
+        pdfView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+
+        setupPDFViewer()
+    }
+
+    private func setupPDFViewer() {
+        guard let pdfUrl = URL(string: Self.samplePdfUrl),
+              let pdfDocument = PDFDocument(url: pdfUrl) else { return }
+        pdfView.document = pdfDocument
+    }
+}
