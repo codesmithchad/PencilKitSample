@@ -12,6 +12,7 @@ import SnapKit
 import Then
 import PencilKit
 import PDFKit
+import Thoth
 
 final class ViewController: UIViewController {
 
@@ -130,13 +131,13 @@ struct Rendition {
     let drawing: PKDrawing
 }
 
-extension UIView {
-    func addSubviews(_ subviews: UIView...) {
-        for subview in subviews {
-            addSubview(subview)
-        }
-    }
-}
+//extension UIView {
+//    func addSubviews(_ subviews: UIView...) {
+//        for subview in subviews {
+//            addSubview(subview)
+//        }
+//    }
+//}
 
 final class PDFViewerView: UIView {
 

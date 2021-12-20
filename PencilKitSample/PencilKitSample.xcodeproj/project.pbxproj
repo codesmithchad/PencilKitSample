@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF0748412770648100D0C3B3 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = BF0748402770648100D0C3B3 /* RxCocoa */; };
+		BF0748432770648100D0C3B3 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = BF0748422770648100D0C3B3 /* RxRelay */; };
+		BF0748452770648100D0C3B3 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BF0748442770648100D0C3B3 /* RxSwift */; };
+		BF0748482770649000D0C3B3 /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = BF0748472770649000D0C3B3 /* RxGesture */; };
+		BF07484B277064A300D0C3B3 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = BF07484A277064A300D0C3B3 /* SnapKit */; };
+		BF07484E277064AF00D0C3B3 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = BF07484D277064AF00D0C3B3 /* Then */; };
+		BF0748512770652000D0C3B3 /* Thoth in Frameworks */ = {isa = PBXBuildFile; productRef = BF0748502770652000D0C3B3 /* Thoth */; };
 		BFC914672769B75C00A55316 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC914662769B75C00A55316 /* AppDelegate.swift */; };
 		BFC914692769B75C00A55316 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC914682769B75C00A55316 /* SceneDelegate.swift */; };
 		BFC9146B2769B75C00A55316 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC9146A2769B75C00A55316 /* ViewController.swift */; };
@@ -15,12 +22,6 @@
 		BFC9147E2769B75E00A55316 /* PencilKitSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC9147D2769B75E00A55316 /* PencilKitSampleTests.swift */; };
 		BFC914882769B75E00A55316 /* PencilKitSampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC914872769B75E00A55316 /* PencilKitSampleUITests.swift */; };
 		BFC9148A2769B75E00A55316 /* PencilKitSampleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC914892769B75E00A55316 /* PencilKitSampleUITestsLaunchTests.swift */; };
-		BFC914982769BAA000A55316 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = BFC914972769BAA000A55316 /* RxCocoa */; };
-		BFC9149A2769BAA000A55316 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = BFC914992769BAA000A55316 /* RxRelay */; };
-		BFC9149C2769BAA000A55316 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BFC9149B2769BAA000A55316 /* RxSwift */; };
-		BFC9149F2769BABD00A55316 /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = BFC9149E2769BABD00A55316 /* RxGesture */; };
-		BFC914A22769BACC00A55316 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = BFC914A12769BACC00A55316 /* SnapKit */; };
-		BFC914A52769BADA00A55316 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = BFC914A42769BADA00A55316 /* Then */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,12 +61,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFC9149C2769BAA000A55316 /* RxSwift in Frameworks */,
-				BFC914A52769BADA00A55316 /* Then in Frameworks */,
-				BFC9149A2769BAA000A55316 /* RxRelay in Frameworks */,
-				BFC9149F2769BABD00A55316 /* RxGesture in Frameworks */,
-				BFC914982769BAA000A55316 /* RxCocoa in Frameworks */,
-				BFC914A22769BACC00A55316 /* SnapKit in Frameworks */,
+				BF0748452770648100D0C3B3 /* RxSwift in Frameworks */,
+				BF07484E277064AF00D0C3B3 /* Then in Frameworks */,
+				BF0748432770648100D0C3B3 /* RxRelay in Frameworks */,
+				BF0748482770649000D0C3B3 /* RxGesture in Frameworks */,
+				BF0748412770648100D0C3B3 /* RxCocoa in Frameworks */,
+				BF0748512770652000D0C3B3 /* Thoth in Frameworks */,
+				BF07484B277064A300D0C3B3 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,12 +163,13 @@
 			);
 			name = PencilKitSample;
 			packageProductDependencies = (
-				BFC914972769BAA000A55316 /* RxCocoa */,
-				BFC914992769BAA000A55316 /* RxRelay */,
-				BFC9149B2769BAA000A55316 /* RxSwift */,
-				BFC9149E2769BABD00A55316 /* RxGesture */,
-				BFC914A12769BACC00A55316 /* SnapKit */,
-				BFC914A42769BADA00A55316 /* Then */,
+				BF0748402770648100D0C3B3 /* RxCocoa */,
+				BF0748422770648100D0C3B3 /* RxRelay */,
+				BF0748442770648100D0C3B3 /* RxSwift */,
+				BF0748472770649000D0C3B3 /* RxGesture */,
+				BF07484A277064A300D0C3B3 /* SnapKit */,
+				BF07484D277064AF00D0C3B3 /* Then */,
+				BF0748502770652000D0C3B3 /* Thoth */,
 			);
 			productName = PencilKitSample;
 			productReference = BFC914632769B75C00A55316 /* PencilKitSample.app */;
@@ -241,10 +244,11 @@
 			);
 			mainGroup = BFC9145A2769B75C00A55316;
 			packageReferences = (
-				BFC914962769BAA000A55316 /* XCRemoteSwiftPackageReference "RxSwift" */,
-				BFC9149D2769BABD00A55316 /* XCRemoteSwiftPackageReference "RxGesture" */,
-				BFC914A02769BACC00A55316 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				BFC914A32769BADA00A55316 /* XCRemoteSwiftPackageReference "Then" */,
+				BF07483F2770648100D0C3B3 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				BF0748462770649000D0C3B3 /* XCRemoteSwiftPackageReference "RxGesture" */,
+				BF074849277064A300D0C3B3 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				BF07484C277064AF00D0C3B3 /* XCRemoteSwiftPackageReference "Then" */,
+				BF07484F2770652000D0C3B3 /* XCRemoteSwiftPackageReference "Thoth" */,
 			);
 			productRefGroup = BFC914642769B75C00A55316 /* Products */;
 			projectDirPath = "";
@@ -461,7 +465,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = PF2X8RX9TP;
+				DEVELOPMENT_TEAM = B23RT9FP44;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PencilKitSample/Resources/Info.plist;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "need to save drawing";
@@ -490,7 +494,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = PF2X8RX9TP;
+				DEVELOPMENT_TEAM = P7V8TZ448X;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PencilKitSample/Resources/Info.plist;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "need to save drawing";
@@ -650,7 +654,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		BFC914962769BAA000A55316 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+		BF07483F2770648100D0C3B3 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift";
 			requirement = {
@@ -658,7 +662,7 @@
 				kind = branch;
 			};
 		};
-		BFC9149D2769BABD00A55316 /* XCRemoteSwiftPackageReference "RxGesture" */ = {
+		BF0748462770649000D0C3B3 /* XCRemoteSwiftPackageReference "RxGesture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/RxSwiftCommunity/RxGesture";
 			requirement = {
@@ -666,7 +670,7 @@
 				kind = branch;
 			};
 		};
-		BFC914A02769BACC00A55316 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+		BF074849277064A300D0C3B3 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
 			requirement = {
@@ -674,7 +678,7 @@
 				kind = branch;
 			};
 		};
-		BFC914A32769BADA00A55316 /* XCRemoteSwiftPackageReference "Then" */ = {
+		BF07484C277064AF00D0C3B3 /* XCRemoteSwiftPackageReference "Then" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/devxoul/Then";
 			requirement = {
@@ -682,38 +686,51 @@
 				kind = branch;
 			};
 		};
+		BF07484F2770652000D0C3B3 /* XCRemoteSwiftPackageReference "Thoth" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/roythecodesmith/Thoth";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		BFC914972769BAA000A55316 /* RxCocoa */ = {
+		BF0748402770648100D0C3B3 /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = BFC914962769BAA000A55316 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			package = BF07483F2770648100D0C3B3 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxCocoa;
 		};
-		BFC914992769BAA000A55316 /* RxRelay */ = {
+		BF0748422770648100D0C3B3 /* RxRelay */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = BFC914962769BAA000A55316 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			package = BF07483F2770648100D0C3B3 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxRelay;
 		};
-		BFC9149B2769BAA000A55316 /* RxSwift */ = {
+		BF0748442770648100D0C3B3 /* RxSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = BFC914962769BAA000A55316 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			package = BF07483F2770648100D0C3B3 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
 		};
-		BFC9149E2769BABD00A55316 /* RxGesture */ = {
+		BF0748472770649000D0C3B3 /* RxGesture */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = BFC9149D2769BABD00A55316 /* XCRemoteSwiftPackageReference "RxGesture" */;
+			package = BF0748462770649000D0C3B3 /* XCRemoteSwiftPackageReference "RxGesture" */;
 			productName = RxGesture;
 		};
-		BFC914A12769BACC00A55316 /* SnapKit */ = {
+		BF07484A277064A300D0C3B3 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = BFC914A02769BACC00A55316 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			package = BF074849277064A300D0C3B3 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
-		BFC914A42769BADA00A55316 /* Then */ = {
+		BF07484D277064AF00D0C3B3 /* Then */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = BFC914A32769BADA00A55316 /* XCRemoteSwiftPackageReference "Then" */;
+			package = BF07484C277064AF00D0C3B3 /* XCRemoteSwiftPackageReference "Then" */;
 			productName = Then;
+		};
+		BF0748502770652000D0C3B3 /* Thoth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BF07484F2770652000D0C3B3 /* XCRemoteSwiftPackageReference "Thoth" */;
+			productName = Thoth;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
