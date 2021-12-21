@@ -465,7 +465,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = B23RT9FP44;
+				DEVELOPMENT_TEAM = PF2X8RX9TP;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PencilKitSample/Resources/Info.plist;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "need to save drawing";
@@ -494,7 +494,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = P7V8TZ448X;
+				DEVELOPMENT_TEAM = PF2X8RX9TP;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PencilKitSample/Resources/Info.plist;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "need to save drawing";

@@ -39,13 +39,13 @@ final class ViewController: UIViewController {
     }
 
     private func setupUI() {
-        let pdfViewerView = PDFViewerView()
+        let pdfViewer = PDFViewer()
         let hStack = UIStackView(arrangedSubviews: getButtons()).then {
             $0.axis = .horizontal
             $0.spacing = 10
         }
-        view.addSubviews(pdfViewerView, canvasView, hStack)
-        pdfViewerView.snp.makeConstraints {
+        view.addSubviews(pdfViewer, canvasView, hStack)
+        pdfViewer.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
         canvasView.snp.makeConstraints {
@@ -82,6 +82,16 @@ final class ViewController: UIViewController {
         deleteButton.setTitle("delete", for: .normal)
 //        restoreButton.setTitle("restore", for: .normal)
         return [saveButton, deleteButton]
+    }
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        switch touches.first?.type {
+        case .pencil:
+            print(1)
+        case .direct:
+            print(2)
+        default: break
+        }
     }
 
     private func saveToAlbum() {
@@ -131,49 +141,29 @@ struct Rendition {
     let drawing: PKDrawing
 }
 
-//extension UIView {
-//    func addSubviews(_ subviews: UIView...) {
-//        for subview in subviews {
-//            addSubview(subview)
-//        }
-//    }
-//}
-
-final class PDFViewerView: UIView {
+final class PDFViewer: PDFView {
 
     static let samplePdfUrl = "https://juventudedesporto.cplp.org/files/sample-pdf_9359.pdf"
 
-    private lazy var pdfView = PDFView().then {
-        $0.displayMode = .singlePageContinuous
-        $0.autoScales = true
-        $0.displayDirection = .horizontal
-//        $0.delegate = self
-        $0.displayBox = .cropBox
-        $0.usePageViewController(true, withViewOptions: nil)
-    }
-
     init(_ frame: CGRect = .zero) {
         super.init(frame: frame)
-        setupUI()
+        setupPdf()
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private func setupUI() {
-        backgroundColor = .white
-        addSubview(pdfView)
-        pdfView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
+    private func setupPdf() {
+        displayMode = .singlePageContinuous
+        autoScales = true
+        displayDirection = .horizontal
+//        delegate = self
+        displayBox = .cropBox
+        usePageViewController(true, withViewOptions: nil)
 
-        setupPDFViewer()
-    }
-
-    private func setupPDFViewer() {
         guard let pdfUrl = URL(string: Self.samplePdfUrl),
               let pdfDocument = PDFDocument(url: pdfUrl) else { return }
-        pdfView.document = pdfDocument
+        document = pdfDocument
     }
 }
