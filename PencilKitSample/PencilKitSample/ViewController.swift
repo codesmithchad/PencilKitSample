@@ -8,162 +8,96 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import SnapKit
-import Then
-import PencilKit
-import PDFKit
+import RxDataSources
 import Thoth
 
 final class ViewController: UIViewController {
-
-    private var canvasView = PKCanvasView().then {
-        $0.tool = PKInkingTool(.pen, color: .gray, width: 20)
-        #if targetEnvironment(simulator)
-        $0.drawingPolicy = .anyInput
-        #else
-        $0.drawingPolicy = .pencilOnly
-        #endif
-        $0.backgroundColor = .clear //UIColor.black.withAlphaComponent(0.1)
-    }
-    private let toolPicker = PKToolPicker()
-    private var rendition: Rendition?
+    
     private let disposeBag = DisposeBag()
-    private let saveButton = UIButton()
-    private let deleteButton = UIButton()
-    private let restoreButton = UIButton()
-
+    private let tableView = UITableView().then {
+        $0.register(ListCell.self, forCellReuseIdentifier: ListCell.identifier)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         setupRx()
     }
-
+    
     private func setupUI() {
-        let pdfViewer = PDFViewer()
-        let hStack = UIStackView(arrangedSubviews: getButtons()).then {
-            $0.axis = .horizontal
-            $0.spacing = 10
-        }
-        view.addSubviews(pdfViewer, canvasView, hStack)
-        pdfViewer.snp.makeConstraints {
+        title = self.className
+        view.addSubviews(tableView)
+        tableView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-        canvasView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now()+2) { [weak self] in
+            guard let table = self?.tableView else { return }
+            let destIdx = IndexPath(item: 0, section: 0)
+            table.delegate?.tableView?(table, didSelectRowAt: destIdx)
         }
-        hStack.snp.makeConstraints {
-            $0.top.left.equalToSuperview().offset(28)
-        }
-
-        canvasView.delegate = self
-        showToolPicker()
     }
-
+    
     private func setupRx() {
-        saveButton.rx.controlEvent(.touchUpInside)
-            .bind(onNext: { [weak self] _ in
-                self?.saveToAlbum()
+        tableView.rx.setDelegate(self).disposed(by: disposeBag)
+        bindTableView()
+    }
+    
+    // MARK: - Table view
+    
+    typealias ListSectionModel = SectionModel<String, String>
+    typealias ListDataSource = RxTableViewSectionedReloadDataSource<ListSectionModel>
+    
+    private func bindTableView() {
+        let list: [UIViewController] = [PDFCanvasViewController(), PlayGroundViewController()]
+        let sections = [SectionModel<String, String>(model: "first section", items: list.map({ $0.className }))]
+        Observable.just(sections)
+            .bind(to: tableView.rx.items(dataSource: listDataSource))
+            .disposed(by: disposeBag)
+        tableView.rx.itemSelected
+            .bind(onNext: { [weak self] indexPath in
+                print("[zoos] \(indexPath.debugDescription)")
+                self?.navigationController?.pushViewController(list[indexPath.row], animated: true)
             })
             .disposed(by: disposeBag)
-        deleteButton.rx.controlEvent(.touchUpInside)
-            .bind(onNext: { [weak self] _ in
-                self?.deleteDrawing()
-            })
-            .disposed(by: disposeBag)
-//        restoreButton.rx.controlEvent(.touchUpInside)
-//            .bind(onNext: { [weak self] _ in
-//                  self?.restoreDrawing()
-//              })
-//            .disposed(by: disposeBag)
     }
-
-    private func getButtons() -> [UIView] {
-        saveButton.setTitle("save", for: .normal)
-        deleteButton.setTitle("delete", for: .normal)
-//        restoreButton.setTitle("restore", for: .normal)
-        return [saveButton, deleteButton]
-    }
-
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        switch touches.first?.type {
-        case .pencil:
-            print(1)
-        case .direct:
-            print(2)
-        default: break
+    
+    private var listDataSource: ListDataSource {
+        typealias ConfigureCell = (TableViewSectionedDataSource<ListSectionModel>, UITableView, IndexPath, String) -> UITableViewCell
+        let configureCell: ConfigureCell = { dataSource, tableView, indexPath, element in
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ListCell.identifier, for: indexPath) as? ListCell else { return UITableViewCell() }
+            cell.titleLabel.text = element
+            return cell
         }
-    }
-
-    private func saveToAlbum() {
-//        let image = canvasView.drawing.image(from: canvasView.bounds, scale: UIScreen.main.scale)
-//        UIImageWriteToSavedPhotosAlbum(image, self, #selector(savedAlert), nil)
-
-//        dump(canvasView.drawing.strokes)
-
-        savedAlert()
-    }
-    @objc func savedAlert() {
-        let alert = UIAlertController(title: "saved!", message: "your drawing has successfully saved!", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
-    }
-
-//    private func saveDrawing() {
-//        let image = canvasView.drawing.image(from: canvasView.bounds, scale: UIScreen.main.scale)
-//        self.rendition = Rendition(title: "rendit", image: image, drawing: canvasView.drawing)
-//    }
-
-    private func deleteDrawing() {
-        canvasView.drawing = PKDrawing()
-    }
-
-    private func restoreDrawing() {
-        guard let rendition = rendition else { return }
-        canvasView.drawing = rendition.drawing
-    }
-
-    private func showToolPicker() {
-        toolPicker.setVisible(true, forFirstResponder: canvasView)
-        toolPicker.addObserver(canvasView)
-        canvasView.becomeFirstResponder()
+        
+        let dataSource = ListDataSource(configureCell: configureCell)
+        return dataSource
     }
 }
 
-extension ViewController: PKCanvasViewDelegate {
-    func canvasViewDrawingDidChange(_ canvasView: PKCanvasView) {
-//        saveDrawing()
-    }
+extension ViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat { 100 }
 }
 
-struct Rendition {
-    let title: String
-    let image: UIImage
-    let drawing: PKDrawing
-}
-
-final class PDFViewer: PDFView {
-
-    static let samplePdfUrl = "https://juventudedesporto.cplp.org/files/sample-pdf_9359.pdf"
-
-    init(_ frame: CGRect = .zero) {
-        super.init(frame: frame)
-        setupPdf()
+private class ListCell: UITableViewCell {
+    static let identifier = description()
+    let titleLabel = UILabel().then {
+        $0.debugBounds()
     }
-
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupUI()
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    private func setupPdf() {
-        displayMode = .singlePageContinuous
-        autoScales = true
-        displayDirection = .horizontal
-//        delegate = self
-        displayBox = .cropBox
-        usePageViewController(true, withViewOptions: nil)
-
-        guard let pdfUrl = URL(string: Self.samplePdfUrl),
-              let pdfDocument = PDFDocument(url: pdfUrl) else { return }
-        document = pdfDocument
+    
+    private func setupUI() {
+        contentView.addSubviews(titleLabel)
+        titleLabel.snp.makeConstraints {
+            $0.edges.equalToSuperview().inset(8)
+        }
     }
 }

@@ -14,6 +14,12 @@
 		BF07484B277064A300D0C3B3 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = BF07484A277064A300D0C3B3 /* SnapKit */; };
 		BF07484E277064AF00D0C3B3 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = BF07484D277064AF00D0C3B3 /* Then */; };
 		BF0748512770652000D0C3B3 /* Thoth in Frameworks */ = {isa = PBXBuildFile; productRef = BF0748502770652000D0C3B3 /* Thoth */; };
+		BFB7C0A4277988CC005778B0 /* PDFCanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB7C0A3277988CC005778B0 /* PDFCanvasViewController.swift */; };
+		BFB7C0A62779897E005778B0 /* PlayGroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB7C0A52779897E005778B0 /* PlayGroundViewController.swift */; };
+		BFB7C0A927798B6D005778B0 /* Differentiator in Frameworks */ = {isa = PBXBuildFile; productRef = BFB7C0A827798B6D005778B0 /* Differentiator */; };
+		BFB7C0AB27798B6D005778B0 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = BFB7C0AA27798B6D005778B0 /* RxDataSources */; };
+		BFB7C12A277ACD89005778B0 /* PDFViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB7C129277ACD89005778B0 /* PDFViewer.swift */; };
+		BFB7C12C277AEFF9005778B0 /* PDFCanvasViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB7C12B277AEFF9005778B0 /* PDFCanvasViewModel.swift */; };
 		BFC914672769B75C00A55316 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC914662769B75C00A55316 /* AppDelegate.swift */; };
 		BFC914692769B75C00A55316 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC914682769B75C00A55316 /* SceneDelegate.swift */; };
 		BFC9146B2769B75C00A55316 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC9146A2769B75C00A55316 /* ViewController.swift */; };
@@ -42,6 +48,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BFB7C0A3277988CC005778B0 /* PDFCanvasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFCanvasViewController.swift; sourceTree = "<group>"; };
+		BFB7C0A52779897E005778B0 /* PlayGroundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayGroundViewController.swift; sourceTree = "<group>"; };
+		BFB7C129277ACD89005778B0 /* PDFViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFViewer.swift; sourceTree = "<group>"; };
+		BFB7C12B277AEFF9005778B0 /* PDFCanvasViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFCanvasViewModel.swift; sourceTree = "<group>"; };
 		BFC914632769B75C00A55316 /* PencilKitSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PencilKitSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFC914662769B75C00A55316 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFC914682769B75C00A55316 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -65,7 +75,9 @@
 				BF07484E277064AF00D0C3B3 /* Then in Frameworks */,
 				BF0748432770648100D0C3B3 /* RxRelay in Frameworks */,
 				BF0748482770649000D0C3B3 /* RxGesture in Frameworks */,
+				BFB7C0A927798B6D005778B0 /* Differentiator in Frameworks */,
 				BF0748412770648100D0C3B3 /* RxCocoa in Frameworks */,
+				BFB7C0AB27798B6D005778B0 /* RxDataSources in Frameworks */,
 				BF0748512770652000D0C3B3 /* Thoth in Frameworks */,
 				BF07484B277064A300D0C3B3 /* SnapKit in Frameworks */,
 			);
@@ -114,6 +126,10 @@
 				BFC914662769B75C00A55316 /* AppDelegate.swift */,
 				BFC914682769B75C00A55316 /* SceneDelegate.swift */,
 				BFC9146A2769B75C00A55316 /* ViewController.swift */,
+				BFB7C0A3277988CC005778B0 /* PDFCanvasViewController.swift */,
+				BFB7C12B277AEFF9005778B0 /* PDFCanvasViewModel.swift */,
+				BFB7C129277ACD89005778B0 /* PDFViewer.swift */,
+				BFB7C0A52779897E005778B0 /* PlayGroundViewController.swift */,
 				BFC914A62769C73D00A55316 /* Resources */,
 			);
 			path = PencilKitSample;
@@ -170,6 +186,8 @@
 				BF07484A277064A300D0C3B3 /* SnapKit */,
 				BF07484D277064AF00D0C3B3 /* Then */,
 				BF0748502770652000D0C3B3 /* Thoth */,
+				BFB7C0A827798B6D005778B0 /* Differentiator */,
+				BFB7C0AA27798B6D005778B0 /* RxDataSources */,
 			);
 			productName = PencilKitSample;
 			productReference = BFC914632769B75C00A55316 /* PencilKitSample.app */;
@@ -249,6 +267,7 @@
 				BF074849277064A300D0C3B3 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				BF07484C277064AF00D0C3B3 /* XCRemoteSwiftPackageReference "Then" */,
 				BF07484F2770652000D0C3B3 /* XCRemoteSwiftPackageReference "Thoth" */,
+				BFB7C0A727798B6D005778B0 /* XCRemoteSwiftPackageReference "RxDataSources" */,
 			);
 			productRefGroup = BFC914642769B75C00A55316 /* Products */;
 			projectDirPath = "";
@@ -293,6 +312,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFC9146B2769B75C00A55316 /* ViewController.swift in Sources */,
+				BFB7C12C277AEFF9005778B0 /* PDFCanvasViewModel.swift in Sources */,
+				BFB7C0A4277988CC005778B0 /* PDFCanvasViewController.swift in Sources */,
+				BFB7C12A277ACD89005778B0 /* PDFViewer.swift in Sources */,
+				BFB7C0A62779897E005778B0 /* PlayGroundViewController.swift in Sources */,
 				BFC914672769B75C00A55316 /* AppDelegate.swift in Sources */,
 				BFC914692769B75C00A55316 /* SceneDelegate.swift in Sources */,
 			);
@@ -694,6 +717,14 @@
 				kind = branch;
 			};
 		};
+		BFB7C0A727798B6D005778B0 /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -731,6 +762,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BF07484F2770652000D0C3B3 /* XCRemoteSwiftPackageReference "Thoth" */;
 			productName = Thoth;
+		};
+		BFB7C0A827798B6D005778B0 /* Differentiator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BFB7C0A727798B6D005778B0 /* XCRemoteSwiftPackageReference "RxDataSources" */;
+			productName = Differentiator;
+		};
+		BFB7C0AA27798B6D005778B0 /* RxDataSources */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BFB7C0A727798B6D005778B0 /* XCRemoteSwiftPackageReference "RxDataSources" */;
+			productName = RxDataSources;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -18,14 +18,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = ViewController()
+        window?.rootViewController =  getNavigation(with: ViewController())
         window?.makeKeyAndVisible()
     }
 
     private func getNavigation(with rootViewController: UIViewController) -> UINavigationController {
         let navigationController = UINavigationController(rootViewController: rootViewController)
-        navigationController.isNavigationBarHidden = true
-        navigationController.navigationItem.hidesBackButton = true
+//        navigationController.isNavigationBarHidden = true
+//        navigationController.navigationItem.hidesBackButton = true
         return navigationController
     }
 
