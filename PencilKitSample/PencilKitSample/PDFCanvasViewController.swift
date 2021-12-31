@@ -14,7 +14,7 @@ import Thoth
 
 final class PDFCanvasViewController: UIViewController {
 
-    private let viewModel = PDFCanvasViewModel()
+    private lazy var viewModel = PDFCanvasViewModel(self)
     private var rendition: Rendition?
     private let disposeBag = DisposeBag()
     
@@ -25,31 +25,32 @@ final class PDFCanvasViewController: UIViewController {
     }
 
     private func setupUI() {
+        view.backgroundColor = .systemPurple
         title = className
         let barButtons = getNavButtons().map({ UIBarButtonItem(customView: $0) })
         navigationItem.setRightBarButtonItems(barButtons, animated: true)
         
-        viewModel.canvasView.addSubview(viewModel.pdfViewer)
-        viewModel.canvasView.layer.zPosition = 1
-        
-        view.addSubviews(viewModel.canvasView)  // viewModel.pdfViewer,
+        // # add canvasView
+        view.addSubviews(viewModel.canvasView)
         viewModel.canvasView.snp.makeConstraints {
-            $0.top.bottom.centerX.equalTo(view.safeAreaLayoutGuide)
-            $0.width.equalTo(10)
-        }
-        viewModel.pdfViewer.snp.makeConstraints {
             $0.edges.equalTo(view.safeAreaLayoutGuide)
+//            $0.edges.size.equalTo(viewModel.getPdfSize())
         }
-
-        viewModel.canvasView.delegate = self
-        viewModel.showToolPicker(viewModel.canvasView)
+        // # insert pdfViewer on canvasView
+        viewModel.addPdfViewerOnCanvas()
+        viewModel.pdfViewer.snp.makeConstraints {
+            $0.edges.equalToSuperview() //equalTo(view.safeAreaLayoutGuide)
+        }
         
-        // .mediaBox .cropBox .bleedBox .trimBox .artBox
-        if let pdfSize = viewModel.pdfViewer.currentPage?.bounds(for: .mediaBox) {
-            viewModel.canvasView.snp.updateConstraints {
-                $0.width.equalTo(pdfSize.width)
-            }
-        }
+        // sizing
+        let pdfViewerSize = CGSize(width: UIScreen.width, height: UIScreen.height-70) // CGSize(width: 1000, height: 1000)
+//        viewModel.pdfViewer.frame = CGRect(origin: .zero, size: pdfViewerSize)
+        viewModel.canvasView.contentSize = pdfViewerSize // viewModel.getPdfSize()
+        viewModel.canvasView.subviews.forEach({ $0.frame = CGRect(origin: .zero, size: pdfViewerSize) })
+        
+        // FIXME: inspecting...
+        viewModel.canvasView.debugBounds(.blue, 2)
+        viewModel.pdfViewer.debugBounds(.white, 4)
     }
 
     private func setupRx() {
@@ -60,6 +61,7 @@ final class PDFCanvasViewController: UIViewController {
 //            .disposed(by: disposeBag)
     }
     
+    /*
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         switch touches.first?.type {
         case .pencil:
@@ -69,49 +71,40 @@ final class PDFCanvasViewController: UIViewController {
         default: break
         }
     }
+    */
 
     private func getNavButtons() -> [UIView] {
+        // save
         let saveButton = UIButton()
         saveButton.setTitle("save", for: .normal)
         saveButton.rx.controlEvent(.touchUpInside)
             .bind(onNext: { [weak self] _ in
-                self?.saveToAlbum()
+                guard let self = self else { return }
+                self.viewModel.saveCanvasToAlbum() { [weak self] in
+                    self?.showAlert("your drawing has successfully saved!", title: "saved!", confirm: AlertAction("OK"))
+//                    self.rendition = Rendition(title: "rendit", image: image, drawing: canvasView.drawing)
+                }
             })
             .disposed(by: disposeBag)
-        
+        // delete
         let deleteButton = UIButton()
         deleteButton.setTitle("delete", for: .normal)
         deleteButton.rx.controlEvent(.touchUpInside)
             .bind(onNext: { [weak self] _ in
-                self?.deleteDrawing()
+                self?.viewModel.canvasView.drawing = PKDrawing()
             })
             .disposed(by: disposeBag)
-        
+        // restore
 //        let restoreButton = UIButton()
 //        restoreButton.setTitle("restore", for: .normal)
 //        restoreButton.rx.controlEvent(.touchUpInside)
 //            .bind(onNext: { [weak self] _ in
-//                  self?.restoreDrawing()
-//              })
+//                guard let rendition = self?.rendition else { return }
+//                self?.viewModel.canvasView.drawing = rendition.drawing
+//            })
 //            .disposed(by: disposeBag)
-        return [saveButton, deleteButton]
-    }
-
-    private func saveToAlbum() {
         
-        viewModel.saveCanvasToAlbum(viewModel.canvasView) { [weak self] in
-            self?.showAlert("your drawing has successfully saved!", title: "saved!", confirm: AlertAction("OK"))
-//            self?.rendition = Rendition(title: "rendit", image: image, drawing: canvasView.drawing)
-        }
-    }
-
-    private func deleteDrawing() {
-        viewModel.canvasView.drawing = PKDrawing()
-    }
-
-    private func restoreDrawing() {
-        guard let rendition = rendition else { return }
-        viewModel.canvasView.drawing = rendition.drawing
+        return [saveButton, deleteButton]
     }
 }
 
@@ -121,6 +114,6 @@ extension PDFCanvasViewController: PKCanvasViewDelegate {
     }
     
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
-        viewModel.pdfViewer.setZoomScale(scrollView.zoomScale)
+        viewModel.setPdfViewerZoomScale(scrollView.zoomScale)
     }
 }
