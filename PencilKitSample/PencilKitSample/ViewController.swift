@@ -52,14 +52,12 @@ final class ViewController: UIViewController {
     typealias ListDataSource = RxTableViewSectionedReloadDataSource<ListSectionModel>
     
     private func bindTableView() {
-        
         let sections = [SectionModel<String, String>(model: "first section", items: Self.list.map({ $0.className }))]
         Observable.just(sections)
             .bind(to: tableView.rx.items(dataSource: listDataSource))
             .disposed(by: disposeBag)
         tableView.rx.itemSelected
             .bind(onNext: { [weak self] indexPath in
-                print("[zoos] \(indexPath.debugDescription)")
                 self?.navigationController?.pushViewController(Self.list[indexPath.row], animated: true)
             })
             .disposed(by: disposeBag)
