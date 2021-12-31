@@ -13,6 +13,10 @@ import Thoth
 
 final class ViewController: UIViewController {
     
+    static let list: [UIViewController] = [CanvasOnPdfViewController(),
+                                           PDFCanvasViewController(),
+                                           PlayGroundViewController()]
+    
     private let disposeBag = DisposeBag()
     private let tableView = UITableView().then {
         $0.register(ListCell.self, forCellReuseIdentifier: ListCell.identifier)
@@ -31,10 +35,9 @@ final class ViewController: UIViewController {
             $0.edges.equalToSuperview()
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now()+2) { [weak self] in
+        DispatchQueue.main.async { [weak self] in
             guard let table = self?.tableView else { return }
-            let destIdx = IndexPath(item: 0, section: 0)
-            table.delegate?.tableView?(table, didSelectRowAt: destIdx)
+            table.delegate?.tableView?(table, didSelectRowAt: IndexPath().zero)
         }
     }
     
@@ -49,15 +52,15 @@ final class ViewController: UIViewController {
     typealias ListDataSource = RxTableViewSectionedReloadDataSource<ListSectionModel>
     
     private func bindTableView() {
-        let list: [UIViewController] = [PDFCanvasViewController(), PlayGroundViewController()]
-        let sections = [SectionModel<String, String>(model: "first section", items: list.map({ $0.className }))]
+        
+        let sections = [SectionModel<String, String>(model: "first section", items: Self.list.map({ $0.className }))]
         Observable.just(sections)
             .bind(to: tableView.rx.items(dataSource: listDataSource))
             .disposed(by: disposeBag)
         tableView.rx.itemSelected
             .bind(onNext: { [weak self] indexPath in
                 print("[zoos] \(indexPath.debugDescription)")
-                self?.navigationController?.pushViewController(list[indexPath.row], animated: true)
+                self?.navigationController?.pushViewController(Self.list[indexPath.row], animated: true)
             })
             .disposed(by: disposeBag)
     }
