@@ -37,7 +37,7 @@ final class ScribbleViewController: UIViewController {
 
     private func setupUI() {
         title = className
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBrown
         view.addSubviews(pdfView)
         pdfView.snp.makeConstraints {
             $0.edges.equalTo(view.safeAreaLayoutGuide)
