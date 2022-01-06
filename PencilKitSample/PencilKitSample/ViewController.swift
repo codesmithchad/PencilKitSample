@@ -13,7 +13,8 @@ import Thoth
 
 final class ViewController: UIViewController {
     
-    static let list: [UIViewController] = [CanvasOnPdfViewController(),
+    static let list: [UIViewController] = [ScribbleViewController(),
+                                           CanvasOnPdfViewController(),
                                            PDFCanvasViewController(),
                                            PlayGroundViewController()]
     

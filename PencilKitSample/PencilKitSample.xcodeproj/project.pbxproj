@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		391E5B7A2786C4CF0060624B /* UIBezierPath+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391E5B732786C4CF0060624B /* UIBezierPath+.swift */; };
+		391E5B7B2786C4CF0060624B /* PDFPage+Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391E5B742786C4CF0060624B /* PDFPage+Selection.swift */; };
+		391E5B7C2786C4CF0060624B /* DrawingAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391E5B752786C4CF0060624B /* DrawingAnnotation.swift */; };
+		391E5B7D2786C4CF0060624B /* PDFDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391E5B762786C4CF0060624B /* PDFDrawer.swift */; };
+		391E5B7E2786C4CF0060624B /* DrawingGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391E5B772786C4CF0060624B /* DrawingGestureRecognizer.swift */; };
+		391E5B7F2786C4CF0060624B /* PDFAnnotationWithPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391E5B782786C4CF0060624B /* PDFAnnotationWithPath.swift */; };
+		391E5B802786C4CF0060624B /* NonSelectablePDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391E5B792786C4CF0060624B /* NonSelectablePDFView.swift */; };
 		BF0748412770648100D0C3B3 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = BF0748402770648100D0C3B3 /* RxCocoa */; };
 		BF0748432770648100D0C3B3 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = BF0748422770648100D0C3B3 /* RxRelay */; };
 		BF0748452770648100D0C3B3 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BF0748442770648100D0C3B3 /* RxSwift */; };
@@ -28,6 +35,7 @@
 		BFC9147E2769B75E00A55316 /* PencilKitSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC9147D2769B75E00A55316 /* PencilKitSampleTests.swift */; };
 		BFC914882769B75E00A55316 /* PencilKitSampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC914872769B75E00A55316 /* PencilKitSampleUITests.swift */; };
 		BFC9148A2769B75E00A55316 /* PencilKitSampleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC914892769B75E00A55316 /* PencilKitSampleUITestsLaunchTests.swift */; };
+		BFDBA16A2782E5E200CF0188 /* ScribbleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDBA1692782E5E200CF0188 /* ScribbleViewController.swift */; };
 		BFF5C276277D864900D5260F /* sample-pdf.pdf in Resources */ = {isa = PBXBuildFile; fileRef = BFF5C275277D864900D5260F /* sample-pdf.pdf */; };
 		BFF5C278277D96EA00D5260F /* CanvasOnPdfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF5C277277D96EA00D5260F /* CanvasOnPdfViewController.swift */; };
 /* End PBXBuildFile section */
@@ -50,6 +58,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		391E5B732786C4CF0060624B /* UIBezierPath+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBezierPath+.swift"; sourceTree = "<group>"; };
+		391E5B742786C4CF0060624B /* PDFPage+Selection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PDFPage+Selection.swift"; sourceTree = "<group>"; };
+		391E5B752786C4CF0060624B /* DrawingAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingAnnotation.swift; sourceTree = "<group>"; };
+		391E5B762786C4CF0060624B /* PDFDrawer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFDrawer.swift; sourceTree = "<group>"; };
+		391E5B772786C4CF0060624B /* DrawingGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingGestureRecognizer.swift; sourceTree = "<group>"; };
+		391E5B782786C4CF0060624B /* PDFAnnotationWithPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFAnnotationWithPath.swift; sourceTree = "<group>"; };
+		391E5B792786C4CF0060624B /* NonSelectablePDFView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NonSelectablePDFView.swift; sourceTree = "<group>"; };
 		BFB7C0A3277988CC005778B0 /* PDFCanvasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFCanvasViewController.swift; sourceTree = "<group>"; };
 		BFB7C0A52779897E005778B0 /* PlayGroundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayGroundViewController.swift; sourceTree = "<group>"; };
 		BFB7C129277ACD89005778B0 /* PDFViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFViewer.swift; sourceTree = "<group>"; };
@@ -66,6 +81,7 @@
 		BFC914832769B75E00A55316 /* PencilKitSampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PencilKitSampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFC914872769B75E00A55316 /* PencilKitSampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PencilKitSampleUITests.swift; sourceTree = "<group>"; };
 		BFC914892769B75E00A55316 /* PencilKitSampleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PencilKitSampleUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		BFDBA1692782E5E200CF0188 /* ScribbleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScribbleViewController.swift; sourceTree = "<group>"; };
 		BFF5C275277D864900D5260F /* sample-pdf.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "sample-pdf.pdf"; sourceTree = "<group>"; };
 		BFF5C277277D96EA00D5260F /* CanvasOnPdfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasOnPdfViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -104,6 +120,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		391E5B722786C4BA0060624B /* Drawing */ = {
+			isa = PBXGroup;
+			children = (
+				391E5B752786C4CF0060624B /* DrawingAnnotation.swift */,
+				391E5B772786C4CF0060624B /* DrawingGestureRecognizer.swift */,
+				391E5B792786C4CF0060624B /* NonSelectablePDFView.swift */,
+				391E5B782786C4CF0060624B /* PDFAnnotationWithPath.swift */,
+				391E5B762786C4CF0060624B /* PDFDrawer.swift */,
+				391E5B742786C4CF0060624B /* PDFPage+Selection.swift */,
+				391E5B732786C4CF0060624B /* UIBezierPath+.swift */,
+			);
+			path = Drawing;
+			sourceTree = "<group>";
+		};
 		BFC9145A2769B75C00A55316 = {
 			isa = PBXGroup;
 			children = (
@@ -135,6 +165,8 @@
 				BFB7C129277ACD89005778B0 /* PDFViewer.swift */,
 				BFB7C0A52779897E005778B0 /* PlayGroundViewController.swift */,
 				BFF5C277277D96EA00D5260F /* CanvasOnPdfViewController.swift */,
+				BFDBA1692782E5E200CF0188 /* ScribbleViewController.swift */,
+				391E5B722786C4BA0060624B /* Drawing */,
 				BFC914A62769C73D00A55316 /* Resources */,
 			);
 			path = PencilKitSample;
@@ -319,12 +351,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFC9146B2769B75C00A55316 /* ViewController.swift in Sources */,
+				391E5B7D2786C4CF0060624B /* PDFDrawer.swift in Sources */,
 				BFB7C12C277AEFF9005778B0 /* PDFCanvasViewModel.swift in Sources */,
 				BFB7C0A4277988CC005778B0 /* PDFCanvasViewController.swift in Sources */,
 				BFB7C12A277ACD89005778B0 /* PDFViewer.swift in Sources */,
 				BFF5C278277D96EA00D5260F /* CanvasOnPdfViewController.swift in Sources */,
+				391E5B7A2786C4CF0060624B /* UIBezierPath+.swift in Sources */,
 				BFB7C0A62779897E005778B0 /* PlayGroundViewController.swift in Sources */,
+				391E5B7B2786C4CF0060624B /* PDFPage+Selection.swift in Sources */,
+				391E5B802786C4CF0060624B /* NonSelectablePDFView.swift in Sources */,
 				BFC914672769B75C00A55316 /* AppDelegate.swift in Sources */,
+				391E5B7E2786C4CF0060624B /* DrawingGestureRecognizer.swift in Sources */,
+				391E5B7C2786C4CF0060624B /* DrawingAnnotation.swift in Sources */,
+				391E5B7F2786C4CF0060624B /* PDFAnnotationWithPath.swift in Sources */,
+				BFDBA16A2782E5E200CF0188 /* ScribbleViewController.swift in Sources */,
 				BFC914692769B75C00A55316 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
