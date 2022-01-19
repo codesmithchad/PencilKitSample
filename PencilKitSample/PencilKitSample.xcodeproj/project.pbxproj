@@ -35,6 +35,8 @@
 		BFC9147E2769B75E00A55316 /* PencilKitSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC9147D2769B75E00A55316 /* PencilKitSampleTests.swift */; };
 		BFC914882769B75E00A55316 /* PencilKitSampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC914872769B75E00A55316 /* PencilKitSampleUITests.swift */; };
 		BFC9148A2769B75E00A55316 /* PencilKitSampleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC914892769B75E00A55316 /* PencilKitSampleUITestsLaunchTests.swift */; };
+		BFD921A92797B0130058A3E9 /* ScribbleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD921A82797B0130058A3E9 /* ScribbleViewModel.swift */; };
+		BFD921AB2797D0C40058A3E9 /* AnnotationListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD921AA2797D0C40058A3E9 /* AnnotationListTableViewController.swift */; };
 		BFDBA16A2782E5E200CF0188 /* ScribbleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDBA1692782E5E200CF0188 /* ScribbleViewController.swift */; };
 		BFDBA172278C1DCA00CF0188 /* sample_science.pdf in Resources */ = {isa = PBXBuildFile; fileRef = BFDBA171278C1DCA00CF0188 /* sample_science.pdf */; };
 		BFF5C278277D96EA00D5260F /* CanvasOnPdfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF5C277277D96EA00D5260F /* CanvasOnPdfViewController.swift */; };
@@ -81,6 +83,8 @@
 		BFC914832769B75E00A55316 /* PencilKitSampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PencilKitSampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFC914872769B75E00A55316 /* PencilKitSampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PencilKitSampleUITests.swift; sourceTree = "<group>"; };
 		BFC914892769B75E00A55316 /* PencilKitSampleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PencilKitSampleUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		BFD921A82797B0130058A3E9 /* ScribbleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScribbleViewModel.swift; sourceTree = "<group>"; };
+		BFD921AA2797D0C40058A3E9 /* AnnotationListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationListTableViewController.swift; sourceTree = "<group>"; };
 		BFDBA1692782E5E200CF0188 /* ScribbleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScribbleViewController.swift; sourceTree = "<group>"; };
 		BFDBA171278C1DCA00CF0188 /* sample_science.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = sample_science.pdf; sourceTree = "<group>"; };
 		BFF5C277277D96EA00D5260F /* CanvasOnPdfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasOnPdfViewController.swift; sourceTree = "<group>"; };
@@ -166,6 +170,8 @@
 				BFB7C0A52779897E005778B0 /* PlayGroundViewController.swift */,
 				BFF5C277277D96EA00D5260F /* CanvasOnPdfViewController.swift */,
 				BFDBA1692782E5E200CF0188 /* ScribbleViewController.swift */,
+				BFD921AA2797D0C40058A3E9 /* AnnotationListTableViewController.swift */,
+				BFD921A82797B0130058A3E9 /* ScribbleViewModel.swift */,
 				391E5B722786C4BA0060624B /* Drawing */,
 				BFC914A62769C73D00A55316 /* Resources */,
 			);
@@ -358,9 +364,11 @@
 				BFF5C278277D96EA00D5260F /* CanvasOnPdfViewController.swift in Sources */,
 				391E5B7A2786C4CF0060624B /* UIBezierPath+.swift in Sources */,
 				BFB7C0A62779897E005778B0 /* PlayGroundViewController.swift in Sources */,
+				BFD921AB2797D0C40058A3E9 /* AnnotationListTableViewController.swift in Sources */,
 				391E5B7B2786C4CF0060624B /* PDFPage+Selection.swift in Sources */,
 				391E5B802786C4CF0060624B /* NonSelectablePDFView.swift in Sources */,
 				BFC914672769B75C00A55316 /* AppDelegate.swift in Sources */,
+				BFD921A92797B0130058A3E9 /* ScribbleViewModel.swift in Sources */,
 				391E5B7E2786C4CF0060624B /* DrawingGestureRecognizer.swift in Sources */,
 				391E5B7C2786C4CF0060624B /* DrawingAnnotation.swift in Sources */,
 				391E5B7F2786C4CF0060624B /* PDFAnnotationWithPath.swift in Sources */,
