@@ -28,7 +28,7 @@ final class CanvasOnPdfViewController: UIViewController {
     }
     
     private func setupUI() {
-        view.backgroundColor = .systemMint
+        view.backgroundColor = .green
         title = className
         
         view.addSubviews(canvasView, pdfViewer)

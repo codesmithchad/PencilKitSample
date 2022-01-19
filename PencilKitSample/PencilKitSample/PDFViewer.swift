@@ -11,7 +11,7 @@ import PDFKit
 final class PDFViewer: PDFView {
 
     static let samplePdfUrl = "https://juventudedesporto.cplp.org/files/sample-pdf_9359.pdf"
-    static let samplPdfLocal = Bundle.main.path(forResource: "sample-pdf", ofType: "pdf") ?? ""
+    static let samplPdfLocal = Bundle.main.path(forResource: "sample_science", ofType: "pdf") ?? ""
 
     init(_ frame: CGRect = .zero) {
         super.init(frame: frame)

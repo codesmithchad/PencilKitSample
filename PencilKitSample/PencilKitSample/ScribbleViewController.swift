@@ -7,16 +7,20 @@
 
 import UIKit
 import PDFKit
+import RxSwift
+import RxCocoa
+import Then
 
 final class Dummies {
     static var pdfDocument: PDFDocument? {
-        guard let url = Bundle.main.url(forResource: "sample-pdf", withExtension: "pdf") else { return nil }
+        guard let url = Bundle.main.url(forResource: "sample_science", withExtension: "pdf") else { return nil }
         return PDFDocument(url: url)
     }
 }
 
 final class ScribbleViewController: UIViewController {
 
+    private let disposeBag = DisposeBag()
     private var shouldUpdatePDFScrollPosition = true
     private let pdfDrawer = PDFDrawer()
     private var pdfView = PDFView().then {
@@ -43,6 +47,7 @@ final class ScribbleViewController: UIViewController {
             $0.edges.equalTo(view.safeAreaLayoutGuide)
         }
         setupPDFView()
+        setupNavButtons()
     }
 
     private func setupPDFView() {
@@ -56,6 +61,57 @@ final class ScribbleViewController: UIViewController {
 //        thumbnailView.thumbnailSize = CGSize(width: 100, height: 100)
 //        thumbnailView.layoutMode = .vertical
 //        thumbnailView.backgroundColor = thumbnailViewContainer.backgroundColor
+    }
+    
+    private func setupNavButtons() {
+        let removeButton = UIButton(type: .system)
+        removeButton.setTitle("remove", for: .normal)
+        removeButton.rx
+            .controlEvent(.touchUpInside)
+            .bind(onNext: { [weak self] in
+                self?.removeCurrentAnnotation()
+            })
+            .disposed(by: disposeBag)
+        let storeButton = UIButton(type: .system)
+        storeButton.setTitle("store", for: .normal)
+        storeButton.rx
+            .controlEvent(.touchUpInside)
+            .bind(onNext: { [weak self] in
+                self?.storeAnnotation()
+            })
+            .disposed(by: disposeBag)
+        let restoreButton = UIButton(type: .system)
+        restoreButton.setTitle("restore", for: .normal)
+        restoreButton.rx
+            .controlEvent(.touchUpInside)
+            .bind(onNext: { [weak self] in
+                self?.restoreAnnotation()
+            })
+            .disposed(by: disposeBag)
+        
+        
+        navigationItem.setRightBarButtonItems([UIBarButtonItem(customView: storeButton),
+                                               UIBarButtonItem(customView: restoreButton),
+                                               UIBarButtonItem(customView: removeButton)], animated: true)
+    }
+    
+    private func removeCurrentAnnotation() {
+        guard let page = pdfView.document?.page(at: 0) else { return }
+        for annotation in page.annotations {
+            page.removeAnnotation(annotation)
+            page.addAnnotation(PDFAnnotation())
+        }
+    }
+    private var pdfAnnotations: [PDFAnnotation]?
+    private func storeAnnotation() {
+        pdfAnnotations = pdfView.document?.page(at: 0)?.annotations
+        
+    }
+    private func restoreAnnotation() {
+//        pdfView.currentPage?.removeAnnotation(<#T##annotation: PDFAnnotation##PDFAnnotation#>)
+        pdfAnnotations?.forEach({ [weak self] annotation in
+            self?.pdfView.currentPage?.addAnnotation(annotation)
+        })
     }
 
     // This code is required to fix PDFView Scroll Position when NOT using pdfView.usePageViewController(true)

@@ -36,7 +36,7 @@
 		BFC914882769B75E00A55316 /* PencilKitSampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC914872769B75E00A55316 /* PencilKitSampleUITests.swift */; };
 		BFC9148A2769B75E00A55316 /* PencilKitSampleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC914892769B75E00A55316 /* PencilKitSampleUITestsLaunchTests.swift */; };
 		BFDBA16A2782E5E200CF0188 /* ScribbleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDBA1692782E5E200CF0188 /* ScribbleViewController.swift */; };
-		BFF5C276277D864900D5260F /* sample-pdf.pdf in Resources */ = {isa = PBXBuildFile; fileRef = BFF5C275277D864900D5260F /* sample-pdf.pdf */; };
+		BFDBA172278C1DCA00CF0188 /* sample_science.pdf in Resources */ = {isa = PBXBuildFile; fileRef = BFDBA171278C1DCA00CF0188 /* sample_science.pdf */; };
 		BFF5C278277D96EA00D5260F /* CanvasOnPdfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF5C277277D96EA00D5260F /* CanvasOnPdfViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -82,7 +82,7 @@
 		BFC914872769B75E00A55316 /* PencilKitSampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PencilKitSampleUITests.swift; sourceTree = "<group>"; };
 		BFC914892769B75E00A55316 /* PencilKitSampleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PencilKitSampleUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		BFDBA1692782E5E200CF0188 /* ScribbleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScribbleViewController.swift; sourceTree = "<group>"; };
-		BFF5C275277D864900D5260F /* sample-pdf.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "sample-pdf.pdf"; sourceTree = "<group>"; };
+		BFDBA171278C1DCA00CF0188 /* sample_science.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = sample_science.pdf; sourceTree = "<group>"; };
 		BFF5C277277D96EA00D5260F /* CanvasOnPdfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasOnPdfViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -192,7 +192,7 @@
 		BFC914A62769C73D00A55316 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				BFF5C275277D864900D5260F /* sample-pdf.pdf */,
+				BFDBA171278C1DCA00CF0188 /* sample_science.pdf */,
 				BFC9146F2769B75E00A55316 /* Assets.xcassets */,
 				BFC914712769B75E00A55316 /* LaunchScreen.storyboard */,
 				BFC914742769B75E00A55316 /* Info.plist */,
@@ -323,7 +323,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFF5C276277D864900D5260F /* sample-pdf.pdf in Resources */,
+				BFDBA172278C1DCA00CF0188 /* sample_science.pdf in Resources */,
 				BFC914732769B75E00A55316 /* LaunchScreen.storyboard in Resources */,
 				BFC914702769B75E00A55316 /* Assets.xcassets in Resources */,
 			);
@@ -464,7 +464,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -519,7 +519,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -536,7 +536,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = PF2X8RX9TP;
+				DEVELOPMENT_TEAM = P7V8TZ448X;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PencilKitSample/Resources/Info.plist;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "need to save drawing";
@@ -565,7 +565,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = PF2X8RX9TP;
+				DEVELOPMENT_TEAM = P7V8TZ448X;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PencilKitSample/Resources/Info.plist;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "need to save drawing";
