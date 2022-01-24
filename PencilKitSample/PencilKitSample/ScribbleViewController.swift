@@ -19,7 +19,10 @@ final class Dummies {
 }
 
 final class ScribbleViewController: UIViewController {
-
+    
+    private enum BarButtonType: String, CaseIterable {
+        case restore = "restore", erase = "erase", save = "save", valotile = "valotile"
+    }
     private let disposeBag = DisposeBag()
     private let viewModel = ScribbleViewModel()
     private var shouldUpdatePDFScrollPosition = true
@@ -48,57 +51,6 @@ final class ScribbleViewController: UIViewController {
         }).disposed(by: disposeBag)
     }
 
-    private func setupUI() {
-        title = className
-        view.backgroundColor = .systemBrown
-        view.addSubviews(pdfView)
-        pdfView.snp.makeConstraints {
-            $0.edges.equalTo(view.safeAreaLayoutGuide)
-        }
-        setupPDFView()
-        setupNavButtons()
-    }
-
-    private func setupPDFView() {
-        let pdfDrawingGestureRecognizer = DrawingGestureRecognizer()
-        pdfView.addGestureRecognizer(pdfDrawingGestureRecognizer)
-        pdfDrawingGestureRecognizer.drawingDelegate = pdfDrawer
-        pdfDrawer.pdfView = pdfView
-    }
-    
-    private func setupNavButtons() {
-        let removeButton = UIButton(type: .system)
-        removeButton.setTitle("remove", for: .normal)
-        removeButton.rx
-            .controlEvent(.touchUpInside)
-            .bind(onNext: { [weak self] in
-                self?.removeCurrentAnnotation()
-            })
-            .disposed(by: disposeBag)
-        
-        let saveButton = UIButton(type: .system)
-        saveButton.setTitle("save", for: .normal)
-        saveButton.rx
-            .controlEvent(.touchUpInside)
-            .bind(onNext: { [weak self] in
-                self?.saveAnnotation()
-            })
-            .disposed(by: disposeBag)
-        
-        let restoreButton = UIButton(type: .system)
-        restoreButton.setTitle("restore", for: .normal)
-        restoreButton.rx
-            .controlEvent(.touchUpInside)
-            .bind(onNext: { [weak self] in
-                self?.showAnnotationList()
-            })
-            .disposed(by: disposeBag)
-        
-        navigationItem.setRightBarButtonItems([UIBarButtonItem(customView: restoreButton),
-                                               UIBarButtonItem(customView: removeButton),
-                                               UIBarButtonItem(customView: saveButton)], animated: true)
-    }
-
     // This code is required to fix PDFView Scroll Position when NOT using pdfView.usePageViewController(true)
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -123,29 +75,67 @@ final class ScribbleViewController: UIViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         pdfView.autoScales = true // This call is required to fix PDF document scale, seems to be bug inside PDFKit
     }
-
-    // MARK: -
     
-    private func removeCurrentAnnotation() {
-        guard let currentPage = pdfView.currentPage else { return }
-        currentPage.annotations.forEach({
-            currentPage.removeAnnotation($0)
-        })
+    // MARK: - setups
+    
+    private func setupUI() {
+        title = className
+        view.backgroundColor = .systemBrown
+        view.addSubviews(pdfView)
+        pdfView.snp.makeConstraints {
+            $0.edges.equalTo(view.safeAreaLayoutGuide)
+        }
+        navigationItem.setRightBarButtonItems(setupNavButtons() ,animated: true)
+        setupPDFView()
     }
     
+    private func setupNavButtons() -> [UIBarButtonItem] {
+        BarButtonType.allCases.map({ type in
+            let barButton = UIBarButtonItem(title: type.rawValue, style: .plain, target: nil, action: nil)
+            barButton.rx.tap.bind(onNext: { [weak self] _ in
+                switch type {
+                    case .restore:
+                        self?.showAnnotationList()
+                    case .erase:
+                        self?.eraseCurrentAnnotation()
+                    case .save:
+                        self?.saveAnnotation()
+                    default:
+                        self?.fadeOutAnnotation()
+                }
+            }).disposed(by: disposeBag)
+            return barButton
+        })
+    }
+
+    private func setupPDFView() {
+        let pdfDrawingGestureRecognizer = DrawingGestureRecognizer()
+        pdfView.addGestureRecognizer(pdfDrawingGestureRecognizer)
+        pdfDrawingGestureRecognizer.drawingDelegate = pdfDrawer
+        pdfDrawer.pdfView = pdfView
+    }
+
+    // MARK: - Bar button actions
+    
     private func saveAnnotation() {
-//        pdfAnnotations = pdfView.currentPage?.annotations
-        
+        guard let currentPage = pdfView.currentPage?.pageRef?.pageNumber else { return }
         let alertController = UIAlertController(title: "Insert annotation title.", message: nil, preferredStyle: .alert)
         alertController.addTextField { $0.text = Date.localDate.debugDescription }
         alertController.addAction(UIAlertAction(title: "cancel", style: .default, handler: nil))
         alertController.addAction(UIAlertAction(title: "ok", style: .default, handler: { [weak self] _ in
             let annotation = Annotation(title: alertController.textFields?.first?.text ?? "",
-                                        pageNo: self?.pdfView.currentPage?.pageRef?.pageNumber ?? 0,
+                                        pageNo: currentPage,
                                         annotation: self?.pdfView.currentPage?.annotations)
             self?.viewModel.addAnnotation(annotation)
         }))
         present(alertController, animated: true)
+    }
+    
+    private func eraseCurrentAnnotation() {
+        guard let currentPage = pdfView.currentPage else { return }
+        currentPage.annotations.forEach({
+            currentPage.removeAnnotation($0)
+        })
     }
     
     private func showAnnotationList() {
@@ -159,10 +149,14 @@ final class ScribbleViewController: UIViewController {
     
     private func restoreAnnotation(_ restoreAnnotation: [PDFAnnotation]?) {
         annotationListPopOver.dismiss(animated: true)
-        removeCurrentAnnotation()
+        eraseCurrentAnnotation()
         guard let restore = restoreAnnotation else { return }
         restore.forEach({[weak self] restoreData in
             self?.pdfView.currentPage?.addAnnotation(restoreData)
         })
+    }
+    
+    private func fadeOutAnnotation() {
+    // TODO: fadeout annotations
     }
 }
