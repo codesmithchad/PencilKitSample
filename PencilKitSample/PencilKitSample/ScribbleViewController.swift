@@ -47,7 +47,8 @@ final class ScribbleViewController: UIViewController {
         setupUI()
         
         annotationListRelay.bind(onNext: { [weak self] row in
-            self?.restoreAnnotation(self?.viewModel.getAnnotaions(row).annotation)
+            guard let currentPage = self?.pdfView.currentPage?.pageRef?.pageNumber else { return }
+            self?.restoreAnnotation(self?.viewModel.getCurrentAnnotations(currentPage)[row].annotation)
         }).disposed(by: disposeBag)
     }
 
