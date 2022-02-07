@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 import RxSwift
 import RxCocoa
 import RxDataSources
@@ -14,8 +15,8 @@ import Thoth
 final class ViewController: UIViewController {
     
     static let list: [UIViewController] = [ScribbleViewController(),
-                                           CanvasOnPdfViewController(),
-                                           PDFCanvasViewController(),
+//                                           CanvasOnPdfViewController(),
+//                                           PDFCanvasViewController(),
                                            PlayGroundViewController()]
     
     private let disposeBag = DisposeBag()
@@ -83,9 +84,10 @@ extension ViewController: UITableViewDelegate {
 
 private class ListCell: UITableViewCell {
     static let identifier = description()
-    let titleLabel = UILabel().then {
-        $0.debugBounds()
-    }
+    let titleLabel = UILabel()
+//        .then {
+//        $0.debugBounds()
+//    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

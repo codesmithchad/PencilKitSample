@@ -21,12 +21,13 @@
 		BF07484B277064A300D0C3B3 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = BF07484A277064A300D0C3B3 /* SnapKit */; };
 		BF07484E277064AF00D0C3B3 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = BF07484D277064AF00D0C3B3 /* Then */; };
 		BF0748512770652000D0C3B3 /* Thoth in Frameworks */ = {isa = PBXBuildFile; productRef = BF0748502770652000D0C3B3 /* Thoth */; };
-		BFB7C0A4277988CC005778B0 /* PDFCanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB7C0A3277988CC005778B0 /* PDFCanvasViewController.swift */; };
+		BF59A4BA27B0B66A00CEDF19 /* PDFViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB7C129277ACD89005778B0 /* PDFViewer.swift */; };
+		BF59A4BD27B0B7B800CEDF19 /* CanvasOnPdfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF5C277277D96EA00D5260F /* CanvasOnPdfViewController.swift */; };
+		BF59A4BE27B0B7BD00CEDF19 /* PDFCanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB7C0A3277988CC005778B0 /* PDFCanvasViewController.swift */; };
+		BF59A4BF27B0B7BD00CEDF19 /* PDFCanvasViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB7C12B277AEFF9005778B0 /* PDFCanvasViewModel.swift */; };
 		BFB7C0A62779897E005778B0 /* PlayGroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB7C0A52779897E005778B0 /* PlayGroundViewController.swift */; };
 		BFB7C0A927798B6D005778B0 /* Differentiator in Frameworks */ = {isa = PBXBuildFile; productRef = BFB7C0A827798B6D005778B0 /* Differentiator */; };
 		BFB7C0AB27798B6D005778B0 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = BFB7C0AA27798B6D005778B0 /* RxDataSources */; };
-		BFB7C12A277ACD89005778B0 /* PDFViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB7C129277ACD89005778B0 /* PDFViewer.swift */; };
-		BFB7C12C277AEFF9005778B0 /* PDFCanvasViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB7C12B277AEFF9005778B0 /* PDFCanvasViewModel.swift */; };
 		BFC914672769B75C00A55316 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC914662769B75C00A55316 /* AppDelegate.swift */; };
 		BFC914692769B75C00A55316 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC914682769B75C00A55316 /* SceneDelegate.swift */; };
 		BFC9146B2769B75C00A55316 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC9146A2769B75C00A55316 /* ViewController.swift */; };
@@ -39,7 +40,6 @@
 		BFD921AB2797D0C40058A3E9 /* AnnotationListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD921AA2797D0C40058A3E9 /* AnnotationListTableViewController.swift */; };
 		BFDBA16A2782E5E200CF0188 /* ScribbleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDBA1692782E5E200CF0188 /* ScribbleViewController.swift */; };
 		BFDBA172278C1DCA00CF0188 /* sample_science.pdf in Resources */ = {isa = PBXBuildFile; fileRef = BFDBA171278C1DCA00CF0188 /* sample_science.pdf */; };
-		BFF5C278277D96EA00D5260F /* CanvasOnPdfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF5C277277D96EA00D5260F /* CanvasOnPdfViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +138,36 @@
 			path = Drawing;
 			sourceTree = "<group>";
 		};
+		BF59A4B927B0B59800CEDF19 /* dropped */ = {
+			isa = PBXGroup;
+			children = (
+				BFF5C277277D96EA00D5260F /* CanvasOnPdfViewController.swift */,
+				BFB7C0A3277988CC005778B0 /* PDFCanvasViewController.swift */,
+				BFB7C12B277AEFF9005778B0 /* PDFCanvasViewModel.swift */,
+			);
+			path = dropped;
+			sourceTree = "<group>";
+		};
+		BF59A4BC27B0B6F100CEDF19 /* Scribble */ = {
+			isa = PBXGroup;
+			children = (
+				BFDBA1692782E5E200CF0188 /* ScribbleViewController.swift */,
+				BFD921AA2797D0C40058A3E9 /* AnnotationListTableViewController.swift */,
+				BFD921A82797B0130058A3E9 /* ScribbleViewModel.swift */,
+				391E5B722786C4BA0060624B /* Drawing */,
+			);
+			path = Scribble;
+			sourceTree = "<group>";
+		};
+		BF59A4C027B0BC9500CEDF19 /* lab */ = {
+			isa = PBXGroup;
+			children = (
+				BFB7C0A52779897E005778B0 /* PlayGroundViewController.swift */,
+				BFB7C129277ACD89005778B0 /* PDFViewer.swift */,
+			);
+			path = lab;
+			sourceTree = "<group>";
+		};
 		BFC9145A2769B75C00A55316 = {
 			isa = PBXGroup;
 			children = (
@@ -164,16 +194,10 @@
 				BFC914662769B75C00A55316 /* AppDelegate.swift */,
 				BFC914682769B75C00A55316 /* SceneDelegate.swift */,
 				BFC9146A2769B75C00A55316 /* ViewController.swift */,
-				BFB7C0A3277988CC005778B0 /* PDFCanvasViewController.swift */,
-				BFB7C12B277AEFF9005778B0 /* PDFCanvasViewModel.swift */,
-				BFB7C129277ACD89005778B0 /* PDFViewer.swift */,
-				BFB7C0A52779897E005778B0 /* PlayGroundViewController.swift */,
-				BFF5C277277D96EA00D5260F /* CanvasOnPdfViewController.swift */,
-				BFDBA1692782E5E200CF0188 /* ScribbleViewController.swift */,
-				BFD921AA2797D0C40058A3E9 /* AnnotationListTableViewController.swift */,
-				BFD921A82797B0130058A3E9 /* ScribbleViewModel.swift */,
-				391E5B722786C4BA0060624B /* Drawing */,
+				BF59A4BC27B0B6F100CEDF19 /* Scribble */,
+				BF59A4C027B0BC9500CEDF19 /* lab */,
 				BFC914A62769C73D00A55316 /* Resources */,
+				BF59A4B927B0B59800CEDF19 /* dropped */,
 			);
 			path = PencilKitSample;
 			sourceTree = "<group>";
@@ -358,22 +382,22 @@
 			files = (
 				BFC9146B2769B75C00A55316 /* ViewController.swift in Sources */,
 				391E5B7D2786C4CF0060624B /* PDFDrawer.swift in Sources */,
-				BFB7C12C277AEFF9005778B0 /* PDFCanvasViewModel.swift in Sources */,
-				BFB7C0A4277988CC005778B0 /* PDFCanvasViewController.swift in Sources */,
-				BFB7C12A277ACD89005778B0 /* PDFViewer.swift in Sources */,
-				BFF5C278277D96EA00D5260F /* CanvasOnPdfViewController.swift in Sources */,
 				391E5B7A2786C4CF0060624B /* UIBezierPath+.swift in Sources */,
+				BF59A4BE27B0B7BD00CEDF19 /* PDFCanvasViewController.swift in Sources */,
 				BFB7C0A62779897E005778B0 /* PlayGroundViewController.swift in Sources */,
 				BFD921AB2797D0C40058A3E9 /* AnnotationListTableViewController.swift in Sources */,
 				391E5B7B2786C4CF0060624B /* PDFPage+Selection.swift in Sources */,
 				391E5B802786C4CF0060624B /* NonSelectablePDFView.swift in Sources */,
 				BFC914672769B75C00A55316 /* AppDelegate.swift in Sources */,
+				BF59A4BA27B0B66A00CEDF19 /* PDFViewer.swift in Sources */,
 				BFD921A92797B0130058A3E9 /* ScribbleViewModel.swift in Sources */,
 				391E5B7E2786C4CF0060624B /* DrawingGestureRecognizer.swift in Sources */,
 				391E5B7C2786C4CF0060624B /* DrawingAnnotation.swift in Sources */,
+				BF59A4BD27B0B7B800CEDF19 /* CanvasOnPdfViewController.swift in Sources */,
 				391E5B7F2786C4CF0060624B /* PDFAnnotationWithPath.swift in Sources */,
 				BFDBA16A2782E5E200CF0188 /* ScribbleViewController.swift in Sources */,
 				BFC914692769B75C00A55316 /* SceneDelegate.swift in Sources */,
+				BF59A4BF27B0B7BD00CEDF19 /* PDFCanvasViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -544,7 +568,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = PF2X8RX9TP;
+				DEVELOPMENT_TEAM = P7V8TZ448X;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PencilKitSample/Resources/Info.plist;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "need to save drawing";
@@ -573,7 +597,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = PF2X8RX9TP;
+				DEVELOPMENT_TEAM = P7V8TZ448X;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PencilKitSample/Resources/Info.plist;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "need to save drawing";
