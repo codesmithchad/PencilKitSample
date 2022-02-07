@@ -68,7 +68,7 @@ final class PDFCanvasViewModel {
     }
     
     func getPdfSize() -> CGSize {
-        print(pdfViewer.currentPage?.bounds(for: .mediaBox).size)
+//        print(pdfViewer.currentPage?.bounds(for: .mediaBox).size)
         return pdfViewer.currentPage?.bounds(for: .mediaBox).size ?? .zero
     }
 }

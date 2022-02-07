@@ -152,8 +152,8 @@
 			isa = PBXGroup;
 			children = (
 				BFDBA1692782E5E200CF0188 /* ScribbleViewController.swift */,
-				BFD921AA2797D0C40058A3E9 /* AnnotationListTableViewController.swift */,
 				BFD921A82797B0130058A3E9 /* ScribbleViewModel.swift */,
+				BFD921AA2797D0C40058A3E9 /* AnnotationListTableViewController.swift */,
 				391E5B722786C4BA0060624B /* Drawing */,
 			);
 			path = Scribble;

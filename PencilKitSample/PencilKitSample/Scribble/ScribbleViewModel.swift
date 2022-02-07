@@ -7,6 +7,7 @@
 
 import Foundation
 import PDFKit
+import RxSwift
 
 struct Annotation {
     let title: String
@@ -18,9 +19,20 @@ final class ScribbleViewModel {
     
     private let valotilableWritingKey = "ValotilableWritingKey"
     private var annotations = [Annotation]()
+    private let disposeBag = DisposeBag()
+    private let valotileObserver = Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
     
     init() {
         retreiveValotilableWriting()
+        setupRx()
+    }
+    
+    private func setupRx() {
+        valotileObserver.bind(onNext: checkValotileClosure).disposed(by: disposeBag)
+    }
+    
+    private lazy var checkValotileClosure: (Int) -> Void = { [weak self] _ in
+        print(#function)
     }
     
     func addAnnotation(_ annotation: Annotation) {

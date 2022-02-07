@@ -10,6 +10,7 @@ import PDFKit
 import RxSwift
 import RxCocoa
 import Then
+import Thoth
 
 final class Dummies {
     static var pdfDocument: PDFDocument? {
@@ -101,8 +102,8 @@ final class ScribbleViewController: UIViewController {
                         self?.eraseCurrentAnnotation()
                     case .save:
                         self?.saveAnnotation()
-                    default:
-                        self?.fadeOutAnnotation()
+                    case .valotile:
+                        self?.saveValotileAnnotation()
                 }
             }).disposed(by: disposeBag)
             return barButton
@@ -118,6 +119,31 @@ final class ScribbleViewController: UIViewController {
 
     // MARK: - Bar button actions
     
+    // - restore
+    private func showAnnotationList() {
+        guard let currentPageNo = pdfView.currentPage?.pageRef?.pageNumber else { return }
+        annotationListPopOver.modalPresentationStyle = .popover
+        annotationListPopOver.annotations = viewModel.getCurrentAnnotations(currentPageNo) //viewModel.allAnnotations
+        let popOver = annotationListPopOver.popoverPresentationController
+        popOver?.barButtonItem = navigationItem.rightBarButtonItems?.first
+        present(annotationListPopOver, animated: true)
+    }
+    private func restoreAnnotation(_ restoreAnnotation: [PDFAnnotation]?) {
+        annotationListPopOver.dismiss(animated: true)
+        eraseCurrentAnnotation()
+        guard let restore = restoreAnnotation else { return }
+        restore.forEach({[weak self] restoreData in
+            self?.pdfView.currentPage?.addAnnotation(restoreData)
+        })
+    }
+    // - erase
+    private func eraseCurrentAnnotation() {
+        guard let currentPage = pdfView.currentPage else { return }
+        currentPage.annotations.forEach({
+            currentPage.removeAnnotation($0)
+        })
+    }
+    // - save
     private func saveAnnotation() {
         guard let currentPage = pdfView.currentPage?.pageRef?.pageNumber else { return }
         let alertController = UIAlertController(title: "Insert annotation title.", message: nil, preferredStyle: .alert)
@@ -131,33 +157,14 @@ final class ScribbleViewController: UIViewController {
         }))
         present(alertController, animated: true)
     }
-    
-    private func eraseCurrentAnnotation() {
-        guard let currentPage = pdfView.currentPage else { return }
-        currentPage.annotations.forEach({
-            currentPage.removeAnnotation($0)
-        })
-    }
-    
-    private func showAnnotationList() {
-        guard let currentPageNo = pdfView.currentPage?.pageRef?.pageNumber else { return }
-        annotationListPopOver.modalPresentationStyle = .popover
-        annotationListPopOver.annotations = viewModel.getCurrentAnnotations(currentPageNo) //viewModel.allAnnotations
-        let popOver = annotationListPopOver.popoverPresentationController
-        popOver?.barButtonItem = navigationItem.rightBarButtonItems?.first
-        present(annotationListPopOver, animated: true)
-    }
-    
-    private func restoreAnnotation(_ restoreAnnotation: [PDFAnnotation]?) {
-        annotationListPopOver.dismiss(animated: true)
-        eraseCurrentAnnotation()
-        guard let restore = restoreAnnotation else { return }
-        restore.forEach({[weak self] restoreData in
-            self?.pdfView.currentPage?.addAnnotation(restoreData)
-        })
-    }
-    
-    private func fadeOutAnnotation() {
+    // - valotile
+    private func saveValotileAnnotation() {
     // TODO: fadeout annotations
+        let alertAction = AlertAction("OK") { _ in
+            print("rolllllllit")
+            // 5분 뒤 표기 제거하는 기능
+            // 저장 시간과 함께 리스트에 저장
+        }
+        showAlert("기화펜 노트", title: "5분 뒤 표기내용 제거", confirm: alertAction, cancel: AlertAction("cancel"))
     }
 }

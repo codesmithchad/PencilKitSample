@@ -14,10 +14,12 @@ import Thoth
 
 final class ViewController: UIViewController {
     
-    static let list: [UIViewController] = [ScribbleViewController(),
-//                                           CanvasOnPdfViewController(),
-//                                           PDFCanvasViewController(),
-                                           PlayGroundViewController()]
+    private enum SegueType: String, CaseIterable {
+        case scribble = "ScribbleViewController"
+//        case canvasOnPdf = "CanvasOnPdfViewController"
+//        case pdfCanvas = "PDFCanvasViewController"
+        case playGround = "PlayGroundViewController"
+    }
     
     private let disposeBag = DisposeBag()
     private let tableView = UITableView().then {
@@ -54,15 +56,21 @@ final class ViewController: UIViewController {
     typealias ListDataSource = RxTableViewSectionedReloadDataSource<ListSectionModel>
     
     private func bindTableView() {
-        let sections = [SectionModel<String, String>(model: "first section", items: Self.list.map({ $0.className }))]
+        let sections = [SectionModel<String, String>(model: "first section", items: SegueType.allCases.map({ $0.rawValue }))]
         Observable.just(sections)
             .bind(to: tableView.rx.items(dataSource: listDataSource))
             .disposed(by: disposeBag)
         tableView.rx.itemSelected
-            .bind(onNext: { [weak self] indexPath in
-                self?.navigationController?.pushViewController(Self.list[indexPath.row], animated: true)
-            })
+            .bind(onNext: tableBinder)
             .disposed(by: disposeBag)
+    }
+    
+    private lazy var tableBinder: (IndexPath) -> Void = { [weak self] indexPath in
+        if case .scribble = SegueType.allCases[indexPath.row] {
+            self?.navigationController?.pushViewController(ScribbleViewController(), animated: true)
+        } else if case .playGround = SegueType.allCases[indexPath.row] {
+            self?.navigationController?.pushViewController(PlayGroundViewController(), animated: true)
+        }
     }
     
     private var listDataSource: ListDataSource {
@@ -83,11 +91,9 @@ extension ViewController: UITableViewDelegate {
 }
 
 private class ListCell: UITableViewCell {
+    
     static let identifier = description()
     let titleLabel = UILabel()
-//        .then {
-//        $0.debugBounds()
-//    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
