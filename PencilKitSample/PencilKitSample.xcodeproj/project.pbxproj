@@ -163,13 +163,13 @@
 			path = Scribble;
 			sourceTree = "<group>";
 		};
-		BF59A4C027B0BC9500CEDF19 /* lab */ = {
+		BF59A4C027B0BC9500CEDF19 /* LAB */ = {
 			isa = PBXGroup;
 			children = (
 				BFB7C0A52779897E005778B0 /* PlayGroundViewController.swift */,
 				BFB7C129277ACD89005778B0 /* PDFViewer.swift */,
 			);
-			path = lab;
+			path = LAB;
 			sourceTree = "<group>";
 		};
 		BFC9145A2769B75C00A55316 = {
@@ -199,7 +199,7 @@
 				BFC914682769B75C00A55316 /* SceneDelegate.swift */,
 				BFC9146A2769B75C00A55316 /* ViewController.swift */,
 				BF59A4BC27B0B6F100CEDF19 /* Scribble */,
-				BF59A4C027B0BC9500CEDF19 /* lab */,
+				BF59A4C027B0BC9500CEDF19 /* LAB */,
 				BFC914A62769C73D00A55316 /* Resources */,
 				BF59A4B927B0B59800CEDF19 /* dropped */,
 				BF59A4C127B10F0500CEDF19 /* ScribbleModel.xcdatamodeld */,
