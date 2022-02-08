@@ -25,6 +25,8 @@
 		BF59A4BD27B0B7B800CEDF19 /* CanvasOnPdfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF5C277277D96EA00D5260F /* CanvasOnPdfViewController.swift */; };
 		BF59A4BE27B0B7BD00CEDF19 /* PDFCanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB7C0A3277988CC005778B0 /* PDFCanvasViewController.swift */; };
 		BF59A4BF27B0B7BD00CEDF19 /* PDFCanvasViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB7C12B277AEFF9005778B0 /* PDFCanvasViewModel.swift */; };
+		BF59A4C327B10F0500CEDF19 /* ScribbleModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BF59A4C127B10F0500CEDF19 /* ScribbleModel.xcdatamodeld */; };
+		BF59A4C527B10F5300CEDF19 /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF59A4C427B10F5300CEDF19 /* CoreDataController.swift */; };
 		BFB7C0A62779897E005778B0 /* PlayGroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB7C0A52779897E005778B0 /* PlayGroundViewController.swift */; };
 		BFB7C0A927798B6D005778B0 /* Differentiator in Frameworks */ = {isa = PBXBuildFile; productRef = BFB7C0A827798B6D005778B0 /* Differentiator */; };
 		BFB7C0AB27798B6D005778B0 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = BFB7C0AA27798B6D005778B0 /* RxDataSources */; };
@@ -67,6 +69,8 @@
 		391E5B772786C4CF0060624B /* DrawingGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingGestureRecognizer.swift; sourceTree = "<group>"; };
 		391E5B782786C4CF0060624B /* PDFAnnotationWithPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFAnnotationWithPath.swift; sourceTree = "<group>"; };
 		391E5B792786C4CF0060624B /* NonSelectablePDFView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NonSelectablePDFView.swift; sourceTree = "<group>"; };
+		BF59A4C227B10F0500CEDF19 /* ScribbleModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ScribbleModel.xcdatamodel; sourceTree = "<group>"; };
+		BF59A4C427B10F5300CEDF19 /* CoreDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
 		BFB7C0A3277988CC005778B0 /* PDFCanvasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFCanvasViewController.swift; sourceTree = "<group>"; };
 		BFB7C0A52779897E005778B0 /* PlayGroundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayGroundViewController.swift; sourceTree = "<group>"; };
 		BFB7C129277ACD89005778B0 /* PDFViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFViewer.swift; sourceTree = "<group>"; };
@@ -198,6 +202,8 @@
 				BF59A4C027B0BC9500CEDF19 /* lab */,
 				BFC914A62769C73D00A55316 /* Resources */,
 				BF59A4B927B0B59800CEDF19 /* dropped */,
+				BF59A4C127B10F0500CEDF19 /* ScribbleModel.xcdatamodeld */,
+				BF59A4C427B10F5300CEDF19 /* CoreDataController.swift */,
 			);
 			path = PencilKitSample;
 			sourceTree = "<group>";
@@ -381,7 +387,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFC9146B2769B75C00A55316 /* ViewController.swift in Sources */,
+				BF59A4C527B10F5300CEDF19 /* CoreDataController.swift in Sources */,
 				391E5B7D2786C4CF0060624B /* PDFDrawer.swift in Sources */,
+				BF59A4C327B10F0500CEDF19 /* ScribbleModel.xcdatamodeld in Sources */,
 				391E5B7A2786C4CF0060624B /* UIBezierPath+.swift in Sources */,
 				BF59A4BE27B0B7BD00CEDF19 /* PDFCanvasViewController.swift in Sources */,
 				BFB7C0A62779897E005778B0 /* PlayGroundViewController.swift in Sources */,
@@ -854,6 +862,19 @@
 			productName = RxDataSources;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		BF59A4C127B10F0500CEDF19 /* ScribbleModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BF59A4C227B10F0500CEDF19 /* ScribbleModel.xcdatamodel */,
+			);
+			currentVersion = BF59A4C227B10F0500CEDF19 /* ScribbleModel.xcdatamodel */;
+			path = ScribbleModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = BFC9145B2769B75C00A55316 /* Project object */;
 }

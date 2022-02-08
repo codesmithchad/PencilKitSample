@@ -7,9 +7,100 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 import PDFKit
+import Thoth
+import SnapKit
 
-class PlayGroundViewController: UIViewController {
+final class PlayGroundViewController: UIViewController, UITableViewDataSource {
+    
+    private let dataManager = CoreDataController()
+    private let disposeBag = DisposeBag()
+    private var writingModel = CoreDataController.WritingModel()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let tableView = UITableView()
+        tableView.debugBounds(.orange)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.dataSource = self
+        
+        dataManager.fetch()
+        tableView.reloadData()
+        
+        let textFields: [UITextField] = ["scribble type", "title"].enumerated().map {
+            let textField = UITextField()
+            textField.placeholder = $0.element
+            textField.tag = $0.offset
+            textField.debugBounds()
+            textField.rx.text.orEmpty.bind(onNext: { [unowned self] message in
+                switch textField.tag {
+                    case 0:
+                        self.writingModel.scribbleType = .note
+                    default:
+                        self.writingModel.title = message
+                }
+            }).disposed(by: disposeBag)
+            return textField
+        }
+        let stackView = UIStackView(arrangedSubviews: textFields)
+        stackView.axis = .vertical
+        stackView.distribution = .fillEqually
+        stackView.alignment = .fill
+        stackView.spacing = 4
+        stackView.debugBounds(.green)
+        
+        let submitButton = UIButton()
+        submitButton.setTitle("submit", for: .normal)
+        submitButton.setTitleColor(.red, for: .normal)
+        submitButton.debugBounds(.blue)
+        submitButton.rx.controlEvent(.touchUpInside).bind(onNext: { [unowned self] in
+            self.dataManager.save(self.writingModel) {
+                self.dataManager.fetch()
+                tableView.reloadData()
+                tableView.scrollToRow(at: IndexPath(row: dataManager.writings.count-1, section: 0), at: .bottom, animated: true)
+            }
+        }).disposed(by: disposeBag)
+        
+        view.addSubviews(stackView, submitButton, tableView)
+        submitButton.snp.makeConstraints {
+            $0.top.right.equalTo(view.safeAreaLayoutGuide).inset(10)
+            $0.width.height.equalTo(160)
+        }
+        stackView.snp.makeConstraints {
+            $0.top.left.equalTo(view.safeAreaLayoutGuide).inset(10)
+            $0.right.equalTo(submitButton.snp.left)
+            $0.height.equalTo(160)
+        }
+        tableView.snp.makeConstraints {
+            $0.top.equalTo(stackView.snp.bottom).offset(4)
+            $0.left.bottom.right.equalTo(view.safeAreaLayoutGuide).inset(10)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { dataManager.writings.count}
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        var configuration = cell.defaultContentConfiguration()
+        let writing = dataManager.writings[indexPath.row]
+        configuration.text = writing.value(forKey: "title") as? String
+        configuration.secondaryText = (writing.value(forKey: "createdAt") as? Date)?.toStringKST()
+        cell.contentConfiguration = configuration
+        return cell
+    }
+}
+
+
+
+
+
+
+
+
+
+/*
+final class PlayGroundViewController: UIViewController {
 
     private let disposeBag = DisposeBag()
     private let pdfViewer = PDFView() //PDFViewer()
@@ -93,3 +184,4 @@ class PlayGroundViewController: UIViewController {
 //        UIGraphicsEndPDFContext()
     }
 }
+*/
