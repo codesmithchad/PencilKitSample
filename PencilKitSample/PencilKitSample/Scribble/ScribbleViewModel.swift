@@ -8,10 +8,12 @@
 import Foundation
 import PDFKit
 import RxSwift
+import CoreData
 
 struct Annotation {
     let title: String
     let pageNo: Int
+    let scribbleType: CoreDataController.ScribbleType
     let annotation: [PDFAnnotation]?
 }
 
@@ -21,14 +23,17 @@ final class ScribbleViewModel {
     private var annotations = [Annotation]()
     private let disposeBag = DisposeBag()
     private let valotileObserver = Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
+    private let coreDataController = CoreDataController()
     
     init() {
+        coreDataController.fetch()
         retreiveValotilableWriting()
         setupRx()
+        fetchAnnotations()
     }
     
     private func setupRx() {
-        valotileObserver.bind(onNext: checkValotileClosure).disposed(by: disposeBag)
+//        valotileObserver.bind(onNext: checkValotileClosure).disposed(by: disposeBag)
     }
     
     private lazy var checkValotileClosure: (Int) -> Void = { [weak self] _ in
@@ -39,7 +44,7 @@ final class ScribbleViewModel {
         guard annotation.annotation != nil else { return }
         annotations.append(annotation)
 //        saveValotilableWriting(annotation)
-        print("annotations!! \(annotations)")
+//        print("annotations!! \(annotations)")
     }
 
     func getAnnotaions(_ row: Int) -> Annotation {
@@ -69,11 +74,30 @@ final class ScribbleViewModel {
         guard let data = UserDefaults.standard.object(forKey: valotilableWritingKey) as? Data else { return }
         do {
             if let writing = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [PDFAnnotation] {
-                addAnnotation(Annotation(title: "saved annotation", pageNo: 1, annotation: writing))
+                addAnnotation(Annotation(title: "saved annotation", pageNo: 1, scribbleType: .note, annotation: writing))
             }
         } catch let error {
             print("retreive error : \(error.localizedDescription)")
         }
+    }
+}
+
+extension ScribbleViewModel {
+    func saveAnnotation(_ annotation: Annotation) {
+        guard let writing = annotation.annotation,
+              let data = try? NSKeyedArchiver.archivedData(withRootObject: writing, requiringSecureCoding: false) else { return }
+        let writingModel = CoreDataController.WritingModel(title: annotation.title,
+                                                           pageNo: annotation.pageNo,
+                                                           scribbleType: annotation.scribbleType,
+                                                           scribble: data)
+        coreDataController.save(writingModel) { [weak self] in
+            self?.coreDataController.fetch()
+        }
+    }
+    
+    func fetchAnnotations(_ currentPageNo: Int? = nil) -> [NSManagedObject] {
+        coreDataController.fetch(currentPageNo)
+        return coreDataController.writings
     }
 }
 

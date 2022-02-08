@@ -16,11 +16,12 @@ final class PlayGroundViewController: UIViewController, UITableViewDataSource {
     
     private let dataManager = CoreDataController()
     private let disposeBag = DisposeBag()
-    private var writingModel = CoreDataController.WritingModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        
+        var writingModel = CoreDataController.WritingModel()
         
         let tableView = UITableView()
         tableView.debugBounds(.orange)
@@ -35,12 +36,12 @@ final class PlayGroundViewController: UIViewController, UITableViewDataSource {
             textField.placeholder = $0.element
             textField.tag = $0.offset
             textField.debugBounds()
-            textField.rx.text.orEmpty.bind(onNext: { [unowned self] message in
+            textField.rx.text.orEmpty.bind(onNext: { message in
                 switch textField.tag {
                     case 0:
-                        self.writingModel.scribbleType = .note
+                        writingModel.scribbleType = .note
                     default:
-                        self.writingModel.title = message
+                        writingModel.title = message
                 }
             }).disposed(by: disposeBag)
             return textField
@@ -57,7 +58,7 @@ final class PlayGroundViewController: UIViewController, UITableViewDataSource {
         submitButton.setTitleColor(.red, for: .normal)
         submitButton.debugBounds(.blue)
         submitButton.rx.controlEvent(.touchUpInside).bind(onNext: { [unowned self] in
-            self.dataManager.save(self.writingModel) {
+            self.dataManager.save(writingModel) {
                 self.dataManager.fetch()
                 tableView.reloadData()
                 tableView.scrollToRow(at: IndexPath(row: dataManager.writings.count-1, section: 0), at: .bottom, animated: true)

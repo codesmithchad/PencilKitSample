@@ -123,7 +123,10 @@ final class ScribbleViewController: UIViewController {
     private func showAnnotationList() {
         guard let currentPageNo = pdfView.currentPage?.pageRef?.pageNumber else { return }
         annotationListPopOver.modalPresentationStyle = .popover
-        annotationListPopOver.annotations = viewModel.getCurrentAnnotations(currentPageNo) //viewModel.allAnnotations
+//        annotationListPopOver.annotations = viewModel.getCurrentAnnotations(currentPageNo) //viewModel.allAnnotations
+        
+        annotationListPopOver.annotations = viewModel.fetchAnnotations(currentPageNo)
+        
         let popOver = annotationListPopOver.popoverPresentationController
         popOver?.barButtonItem = navigationItem.rightBarButtonItems?.first
         present(annotationListPopOver, animated: true)
@@ -152,8 +155,10 @@ final class ScribbleViewController: UIViewController {
         alertController.addAction(UIAlertAction(title: "ok", style: .default, handler: { [weak self] _ in
             let annotation = Annotation(title: alertController.textFields?.first?.text ?? "",
                                         pageNo: currentPage,
+                                        scribbleType: CoreDataController.ScribbleType.note,
                                         annotation: self?.pdfView.currentPage?.annotations)
-            self?.viewModel.addAnnotation(annotation)
+            self?.viewModel.saveAnnotation(annotation)
+//            self?.viewModel.addAnnotation(annotation)
         }))
         present(alertController, animated: true)
     }

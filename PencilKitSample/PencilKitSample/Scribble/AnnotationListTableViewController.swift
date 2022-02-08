@@ -8,10 +8,12 @@
 import UIKit
 import RxSwift
 import RxRelay
+import CoreData
 
 final class AnnotationListTableViewController: UITableViewController {
     
-    var annotations = [Annotation]()
+//    var annotations = [Annotation]()
+    var annotations = [NSManagedObject]()
     var relay = PublishRelay<Int>()
     
     override func viewDidLoad() {
@@ -30,7 +32,8 @@ final class AnnotationListTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: AnnotationListTableViewCell.description(), for: indexPath) as? AnnotationListTableViewCell else {
             return UITableViewCell()
         }
-        cell.textLabel?.text = annotations[indexPath.row].title
+//        cell.textLabel?.text = annotations[indexPath.row].title
+        cell.textLabel?.text = annotations[indexPath.row].value(forKey: "title") as? String
         return cell
     }
     

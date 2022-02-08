@@ -70,10 +70,13 @@ final class CoreDataController {
         }
     }
     
-    func fetch() {
+    func fetch(_ currentPageNo: Int? = nil) {
 //        let context = persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entityName)
-//        fetchRequest.predicate = NSPredicate(format: "scribbleType = %d", 0)
+        if let pageNo = currentPageNo {
+            fetchRequest.predicate = NSPredicate(format: "pageNo = %d", pageNo)
+        }
+        
         do {
             writings = try context.fetch(fetchRequest)
             
