@@ -94,10 +94,16 @@ extension ScribbleViewModel {
             self?.coreDataController.fetch()
         }
     }
-    
+
+    @discardableResult
     func fetchAnnotations(_ currentPageNo: Int? = nil) -> [NSManagedObject] {
         coreDataController.fetch(currentPageNo)
-        return coreDataController.writings
+    }
+
+    func fetchCorrentAnnotation(_ row: Int) -> [Annotation] {
+        guard let data = coreDataController.fetch(row).map({ $0.value(forKey: "scribble") }) as? Data else { return [] }
+        let jjj = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [PDFAnnotation]
+        return []
     }
 }
 

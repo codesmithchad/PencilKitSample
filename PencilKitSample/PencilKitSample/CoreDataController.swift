@@ -70,25 +70,17 @@ final class CoreDataController {
         }
     }
     
-    func fetch(_ currentPageNo: Int? = nil) {
-//        let context = persistentContainer.viewContext
+    func fetch(_ currentPageNo: Int? = nil) -> [NSManagedObject] {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entityName)
         if let pageNo = currentPageNo {
             fetchRequest.predicate = NSPredicate(format: "pageNo = %d", pageNo)
         }
-        
-        do {
-            writings = try context.fetch(fetchRequest)
-            
-//            let wringg = writings.map({
-//                return WritingModel(createdAt: $0.value(forKey: "createdAt") as? Date ?? Date(),
-//                                    scribble: $0.value(forKey: "scribble") as? Data,
-//                                    scribbleType: $0.value(forKey: "scribbleType") as? Int ?? 0,
-//                                    title: $0.value(forKey: "title") as? String)
-//            })
-        } catch let error as NSError {
-            fatalError("Unresolved error \(error), \(error.userInfo)")
+
+        guard let writings = try? context.fetch(fetchRequest) else {
+            return []
         }
+        self.writings = writings
+        return writings
     }
     
     func delete(_ index: Int) {

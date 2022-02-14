@@ -48,8 +48,11 @@ final class ScribbleViewController: UIViewController {
         setupUI()
         
         annotationListRelay.bind(onNext: { [weak self] row in
+            // 선택한 셀의 넘버만 가지고 들어온다
             guard let currentPage = self?.pdfView.currentPage?.pageRef?.pageNumber else { return }
-            self?.restoreAnnotation(self?.viewModel.getCurrentAnnotations(currentPage)[row].annotation)
+            // FIXME: todo
+//            self?.restoreAnnotation()
+//            self?.restoreAnnotation(self?.viewModel.getCurrentAnnotations(currentPage)[row].annotation)
         }).disposed(by: disposeBag)
     }
 
