@@ -26,6 +26,7 @@
 		BF61051D27BB83E5007920F6 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF61051C27BB83E5007920F6 /* PersistenceManager.swift */; };
 		BF61051F27BB844B007920F6 /* LoopableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF61051E27BB844B007920F6 /* LoopableExtension.swift */; };
 		BF61052127BB8478007920F6 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF61052027BB8478007920F6 /* Model.swift */; };
+		BF61052327BBA0F1007920F6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = BF61052227BBA0F1007920F6 /* README.md */; };
 		BFB7C0A927798B6D005778B0 /* Differentiator in Frameworks */ = {isa = PBXBuildFile; productRef = BFB7C0A827798B6D005778B0 /* Differentiator */; };
 		BFB7C0AB27798B6D005778B0 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = BFB7C0AA27798B6D005778B0 /* RxDataSources */; };
 		BFC914672769B75C00A55316 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC914662769B75C00A55316 /* AppDelegate.swift */; };
@@ -72,6 +73,7 @@
 		BF61051C27BB83E5007920F6 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		BF61051E27BB844B007920F6 /* LoopableExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopableExtension.swift; sourceTree = "<group>"; };
 		BF61052027BB8478007920F6 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		BF61052227BBA0F1007920F6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		BFC914632769B75C00A55316 /* PencilKitSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PencilKitSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFC914662769B75C00A55316 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFC914682769B75C00A55316 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 		BFC9145A2769B75C00A55316 = {
 			isa = PBXGroup;
 			children = (
+				BF61052227BBA0F1007920F6 /* README.md */,
 				BFC914652769B75C00A55316 /* PencilKitSample */,
 				BFC9147C2769B75E00A55316 /* PencilKitSampleTests */,
 				BFC914862769B75E00A55316 /* PencilKitSampleUITests */,
@@ -339,6 +342,7 @@
 			files = (
 				BFDBA172278C1DCA00CF0188 /* sample_science.pdf in Resources */,
 				BFC914732769B75E00A55316 /* LaunchScreen.storyboard in Resources */,
+				BF61052327BBA0F1007920F6 /* README.md in Resources */,
 				BFC914702769B75E00A55316 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
