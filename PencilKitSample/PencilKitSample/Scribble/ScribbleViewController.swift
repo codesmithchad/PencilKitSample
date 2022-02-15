@@ -35,10 +35,9 @@ final class ScribbleViewController: UIViewController {
         $0.pageBreakMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         $0.autoScales = true
     }
-    private var pdfAnnotations: [PDFAnnotation]?
     private let annotationListPopOver = AnnotationListTableViewController()
-    private lazy var annotationListRelay: PublishRelay<PDFAnnotation> = {
-       let relay = PublishRelay<PDFAnnotation>()
+    private lazy var annotationListRelay: PublishRelay<[PDFAnnotation]> = {
+       let relay = PublishRelay<[PDFAnnotation]>()
         annotationListPopOver.relay = relay
         return relay
     }()
@@ -47,10 +46,9 @@ final class ScribbleViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         
-//        annotationListRelay.bind(onNext: { [weak self] annotation in
-//            // [PDFAnnotation]?
-//            self?.restoreAnnotation(annotation)
-//        }).disposed(by: disposeBag)
+        annotationListRelay.bind(onNext: { [weak self] annotation in
+            self?.restoreAnnotation(annotation)
+        }).disposed(by: disposeBag)
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
