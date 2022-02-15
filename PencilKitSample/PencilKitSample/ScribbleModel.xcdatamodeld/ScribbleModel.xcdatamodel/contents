@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="21C52" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Writing" representedClassName="Writing" syncable="YES" codeGenerationType="class">
-        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="annotation" optional="YES" attributeType="Binary" customClassName="[NSObject]"/>
         <attribute name="pageNo" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="scribble" optional="YES" attributeType="Binary"/>
         <attribute name="scribbleType" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="Writing" positionX="-63" positionY="-18" width="128" height="104"/>
+        <element name="Writing" positionX="-63" positionY="-18" width="128" height="89"/>
     </elements>
 </model>

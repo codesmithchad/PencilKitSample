@@ -9,12 +9,12 @@ import UIKit
 import RxSwift
 import RxRelay
 import CoreData
+import PDFKit
 
 final class AnnotationListTableViewController: UITableViewController {
     
-//    var annotations = [Annotation]()
-    var annotations = [NSManagedObject]()
-    var relay = PublishRelay<Int>()
+    var annotations = [Annotation]()
+    var relay = PublishRelay<PDFAnnotation>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,13 +32,12 @@ final class AnnotationListTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: AnnotationListTableViewCell.description(), for: indexPath) as? AnnotationListTableViewCell else {
             return UITableViewCell()
         }
-//        cell.textLabel?.text = annotations[indexPath.row].title
-        cell.textLabel?.text = annotations[indexPath.row].value(forKey: "title") as? String
+        cell.textLabel?.text = annotations[indexPath.row].title
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        relay.accept(indexPath.row)
+//        relay.accept(annotations[indexPath.row].annotation)
     }
     
     /*

@@ -12,8 +12,8 @@ import PDFKit
 import Thoth
 import SnapKit
 
-final class PlayGroundViewController: UIViewController, UITableViewDataSource {
-    
+final class PlayGroundViewController: UIViewController { // , UITableViewDataSource
+    /*
     private let dataManager = CoreDataController()
     private let disposeBag = DisposeBag()
     
@@ -21,7 +21,7 @@ final class PlayGroundViewController: UIViewController, UITableViewDataSource {
         super.viewDidLoad()
         view.backgroundColor = .white
         
-        var writingModel = CoreDataController.WritingModel()
+        var writingModel = WritingModel()
         
         let tableView = UITableView()
         tableView.debugBounds(.orange)
@@ -36,14 +36,14 @@ final class PlayGroundViewController: UIViewController, UITableViewDataSource {
             textField.placeholder = $0.element
             textField.tag = $0.offset
             textField.debugBounds()
-            textField.rx.text.orEmpty.bind(onNext: { message in
-                switch textField.tag {
-                    case 0:
-                        writingModel.scribbleType = .note
-                    default:
-                        writingModel.title = message
-                }
-            }).disposed(by: disposeBag)
+//            textField.rx.text.orEmpty.bind(onNext: { message in
+//                switch textField.tag {
+//                    case 0:
+//                        writingModel.scribbleType = .note
+//                    default:
+//                        writingModel.title = message
+//                }
+//            }).disposed(by: disposeBag)
             return textField
         }
         let stackView = UIStackView(arrangedSubviews: textFields)
@@ -91,6 +91,7 @@ final class PlayGroundViewController: UIViewController, UITableViewDataSource {
         cell.contentConfiguration = configuration
         return cell
     }
+     */
 }
 
 

@@ -37,8 +37,8 @@ final class ScribbleViewController: UIViewController {
     }
     private var pdfAnnotations: [PDFAnnotation]?
     private let annotationListPopOver = AnnotationListTableViewController()
-    private lazy var annotationListRelay: PublishRelay<Int> = {
-       let relay = PublishRelay<Int>()
+    private lazy var annotationListRelay: PublishRelay<PDFAnnotation> = {
+       let relay = PublishRelay<PDFAnnotation>()
         annotationListPopOver.relay = relay
         return relay
     }()
@@ -47,38 +47,14 @@ final class ScribbleViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         
-        annotationListRelay.bind(onNext: { [weak self] row in
-            // 선택한 셀의 넘버만 가지고 들어온다
-            guard let currentPage = self?.pdfView.currentPage?.pageRef?.pageNumber else { return }
-            // FIXME: todo
-//            self?.restoreAnnotation()
-//            self?.restoreAnnotation(self?.viewModel.getCurrentAnnotations(currentPage)[row].annotation)
-        }).disposed(by: disposeBag)
+//        annotationListRelay.bind(onNext: { [weak self] annotation in
+//            // [PDFAnnotation]?
+//            self?.restoreAnnotation(annotation)
+//        }).disposed(by: disposeBag)
     }
-
-    // This code is required to fix PDFView Scroll Position when NOT using pdfView.usePageViewController(true)
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        if shouldUpdatePDFScrollPosition {
-            fixPDFViewScrollPosition()
-        }
-    }
-
-    // This code is required to fix PDFView Scroll Position when NOT using pdfView.usePageViewController(true)
-    private func fixPDFViewScrollPosition() {
-        if let page = pdfView.document?.page(at: 0) {
-            pdfView.go(to: PDFDestination(page: page, at: CGPoint(x: 0, y: page.bounds(for: pdfView.displayBox).size.height)))
-        }
-    }
-
-    // This code is required to fix PDFView Scroll Position when NOT using pdfView.usePageViewController(true)
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        shouldUpdatePDFScrollPosition = false
-    }
-
+    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        pdfView.autoScales = true // This call is required to fix PDF document scale, seems to be bug inside PDFKit
+        pdfView.autoScales = true // pdf 스케일 고정에 필요함. PDFKit 버그로 보임
     }
     
     // MARK: - setups
@@ -122,18 +98,17 @@ final class ScribbleViewController: UIViewController {
 
     // MARK: - Bar button actions
     
-    // - restore
+    // - list
     private func showAnnotationList() {
         guard let currentPageNo = pdfView.currentPage?.pageRef?.pageNumber else { return }
         annotationListPopOver.modalPresentationStyle = .popover
-//        annotationListPopOver.annotations = viewModel.getCurrentAnnotations(currentPageNo) //viewModel.allAnnotations
-        
         annotationListPopOver.annotations = viewModel.fetchAnnotations(currentPageNo)
-        
         let popOver = annotationListPopOver.popoverPresentationController
         popOver?.barButtonItem = navigationItem.rightBarButtonItems?.first
         present(annotationListPopOver, animated: true)
     }
+    
+    // - restore
     private func restoreAnnotation(_ restoreAnnotation: [PDFAnnotation]?) {
         annotationListPopOver.dismiss(animated: true)
         eraseCurrentAnnotation()
@@ -141,6 +116,16 @@ final class ScribbleViewController: UIViewController {
         restore.forEach({[weak self] restoreData in
             self?.pdfView.currentPage?.addAnnotation(restoreData)
         })
+        
+//        guard let currentPage = pdfView.currentPage?.pageRef?.pageNumber else { return }
+//        let annotations = viewModel.fetchCurrentAnnotation(currentPage, row)
+//        annotations.forEach({ [weak self] restoreData in
+//            self?.pdfView.currentPage?.addAnnotation(restoreData)
+//        })
+        // FIXME: todo
+//            self?.restoreAnnotation(self?.viewModel.getCurrentAnnotations(currentPage)[row].annotation)
+        
+//        viewModel.fetchAnnotations(row)
     }
     // - erase
     private func eraseCurrentAnnotation() {
@@ -153,26 +138,48 @@ final class ScribbleViewController: UIViewController {
     private func saveAnnotation() {
         guard let currentPage = pdfView.currentPage?.pageRef?.pageNumber else { return }
         let alertController = UIAlertController(title: "Insert annotation title.", message: nil, preferredStyle: .alert)
+        let handler: (UIAlertAction) -> Void = { [weak self] _ in
+            let title = alertController.textFields?.first?.text ?? ""
+            let pageNo = currentPage
+            let scribbleType = ScribbleType.note
+            let annotation = self?.pdfView.currentPage?.annotations
+            self?.viewModel.insertAnnotation(Annotation(title: title, pageNo: pageNo, scribbleType: scribbleType, annotation: annotation))
+        }
         alertController.addTextField { $0.text = Date.localDate.debugDescription }
         alertController.addAction(UIAlertAction(title: "cancel", style: .default, handler: nil))
-        alertController.addAction(UIAlertAction(title: "ok", style: .default, handler: { [weak self] _ in
-            let annotation = Annotation(title: alertController.textFields?.first?.text ?? "",
-                                        pageNo: currentPage,
-                                        scribbleType: CoreDataController.ScribbleType.note,
-                                        annotation: self?.pdfView.currentPage?.annotations)
-            self?.viewModel.saveAnnotation(annotation)
-//            self?.viewModel.addAnnotation(annotation)
-        }))
+        alertController.addAction(UIAlertAction(title: "ok", style: .default, handler: handler))
         present(alertController, animated: true)
     }
     // - valotile
     private func saveValotileAnnotation() {
     // TODO: fadeout annotations
-        let alertAction = AlertAction("OK") { _ in
-            print("rolllllllit")
-            // 5분 뒤 표기 제거하는 기능
-            // 저장 시간과 함께 리스트에 저장
-        }
-        showAlert("기화펜 노트", title: "5분 뒤 표기내용 제거", confirm: alertAction, cancel: AlertAction("cancel"))
+//        let alertAction = AlertAction("OK") { _ in
+//            print("rolllllllit")
+//            // 5분 뒤 표기 제거하는 기능
+//            // 저장 시간과 함께 리스트에 저장
+//        }
+//        showAlert("기화펜 노트", title: "5분 뒤 표기내용 제거", confirm: alertAction, cancel: AlertAction("cancel"))
     }
+}
+
+
+// Below codes are required to fix PDFView Scroll Position when NOT using pdfView.usePageViewController(true)
+private extension ScribbleViewController {
+    /*
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if shouldUpdatePDFScrollPosition {
+            fixPDFViewScrollPosition()
+        }
+    }
+    private func fixPDFViewScrollPosition() {
+        if let page = pdfView.document?.page(at: 0) {
+            pdfView.go(to: PDFDestination(page: page, at: CGPoint(x: 0, y: page.bounds(for: pdfView.displayBox).size.height)))
+        }
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        shouldUpdatePDFScrollPosition = false
+    }
+    */
 }
