@@ -21,16 +21,11 @@
 		BF07484B277064A300D0C3B3 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = BF07484A277064A300D0C3B3 /* SnapKit */; };
 		BF07484E277064AF00D0C3B3 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = BF07484D277064AF00D0C3B3 /* Then */; };
 		BF0748512770652000D0C3B3 /* Thoth in Frameworks */ = {isa = PBXBuildFile; productRef = BF0748502770652000D0C3B3 /* Thoth */; };
-		BF59A4BA27B0B66A00CEDF19 /* PDFViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB7C129277ACD89005778B0 /* PDFViewer.swift */; };
-		BF59A4BD27B0B7B800CEDF19 /* CanvasOnPdfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF5C277277D96EA00D5260F /* CanvasOnPdfViewController.swift */; };
-		BF59A4BE27B0B7BD00CEDF19 /* PDFCanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB7C0A3277988CC005778B0 /* PDFCanvasViewController.swift */; };
-		BF59A4BF27B0B7BD00CEDF19 /* PDFCanvasViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB7C12B277AEFF9005778B0 /* PDFCanvasViewModel.swift */; };
 		BF59A4C327B10F0500CEDF19 /* ScribbleModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BF59A4C127B10F0500CEDF19 /* ScribbleModel.xcdatamodeld */; };
 		BF59A4CA27BA20F500CEDF19 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF59A4C927BA20F500CEDF19 /* UserDefaultsManager.swift */; };
 		BF61051D27BB83E5007920F6 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF61051C27BB83E5007920F6 /* PersistenceManager.swift */; };
 		BF61051F27BB844B007920F6 /* LoopableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF61051E27BB844B007920F6 /* LoopableExtension.swift */; };
 		BF61052127BB8478007920F6 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF61052027BB8478007920F6 /* Model.swift */; };
-		BFB7C0A62779897E005778B0 /* PlayGroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB7C0A52779897E005778B0 /* PlayGroundViewController.swift */; };
 		BFB7C0A927798B6D005778B0 /* Differentiator in Frameworks */ = {isa = PBXBuildFile; productRef = BFB7C0A827798B6D005778B0 /* Differentiator */; };
 		BFB7C0AB27798B6D005778B0 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = BFB7C0AA27798B6D005778B0 /* RxDataSources */; };
 		BFC914672769B75C00A55316 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC914662769B75C00A55316 /* AppDelegate.swift */; };
@@ -77,10 +72,6 @@
 		BF61051C27BB83E5007920F6 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		BF61051E27BB844B007920F6 /* LoopableExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopableExtension.swift; sourceTree = "<group>"; };
 		BF61052027BB8478007920F6 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		BFB7C0A3277988CC005778B0 /* PDFCanvasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFCanvasViewController.swift; sourceTree = "<group>"; };
-		BFB7C0A52779897E005778B0 /* PlayGroundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayGroundViewController.swift; sourceTree = "<group>"; };
-		BFB7C129277ACD89005778B0 /* PDFViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFViewer.swift; sourceTree = "<group>"; };
-		BFB7C12B277AEFF9005778B0 /* PDFCanvasViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFCanvasViewModel.swift; sourceTree = "<group>"; };
 		BFC914632769B75C00A55316 /* PencilKitSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PencilKitSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFC914662769B75C00A55316 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFC914682769B75C00A55316 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -97,7 +88,6 @@
 		BFD921AA2797D0C40058A3E9 /* AnnotationListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationListTableViewController.swift; sourceTree = "<group>"; };
 		BFDBA1692782E5E200CF0188 /* ScribbleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScribbleViewController.swift; sourceTree = "<group>"; };
 		BFDBA171278C1DCA00CF0188 /* sample_science.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = sample_science.pdf; sourceTree = "<group>"; };
-		BFF5C277277D96EA00D5260F /* CanvasOnPdfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasOnPdfViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,16 +138,6 @@
 			path = Drawing;
 			sourceTree = "<group>";
 		};
-		BF59A4B927B0B59800CEDF19 /* dropped */ = {
-			isa = PBXGroup;
-			children = (
-				BFF5C277277D96EA00D5260F /* CanvasOnPdfViewController.swift */,
-				BFB7C0A3277988CC005778B0 /* PDFCanvasViewController.swift */,
-				BFB7C12B277AEFF9005778B0 /* PDFCanvasViewModel.swift */,
-			);
-			path = dropped;
-			sourceTree = "<group>";
-		};
 		BF59A4BC27B0B6F100CEDF19 /* Scribble */ = {
 			isa = PBXGroup;
 			children = (
@@ -167,15 +147,6 @@
 				391E5B722786C4BA0060624B /* Drawing */,
 			);
 			path = Scribble;
-			sourceTree = "<group>";
-		};
-		BF59A4C027B0BC9500CEDF19 /* LAB */ = {
-			isa = PBXGroup;
-			children = (
-				BFB7C0A52779897E005778B0 /* PlayGroundViewController.swift */,
-				BFB7C129277ACD89005778B0 /* PDFViewer.swift */,
-			);
-			path = LAB;
 			sourceTree = "<group>";
 		};
 		BFC9145A2769B75C00A55316 = {
@@ -205,9 +176,7 @@
 				BFC914682769B75C00A55316 /* SceneDelegate.swift */,
 				BFC9146A2769B75C00A55316 /* ViewController.swift */,
 				BF59A4BC27B0B6F100CEDF19 /* Scribble */,
-				BF59A4C027B0BC9500CEDF19 /* LAB */,
 				BFC914A62769C73D00A55316 /* Resources */,
-				BF59A4B927B0B59800CEDF19 /* dropped */,
 				BF59A4C127B10F0500CEDF19 /* ScribbleModel.xcdatamodeld */,
 				BF61052027BB8478007920F6 /* Model.swift */,
 				BF61051C27BB83E5007920F6 /* PersistenceManager.swift */,
@@ -400,24 +369,19 @@
 				BF61051F27BB844B007920F6 /* LoopableExtension.swift in Sources */,
 				BF59A4C327B10F0500CEDF19 /* ScribbleModel.xcdatamodeld in Sources */,
 				391E5B7A2786C4CF0060624B /* UIBezierPath+.swift in Sources */,
-				BF59A4BE27B0B7BD00CEDF19 /* PDFCanvasViewController.swift in Sources */,
-				BFB7C0A62779897E005778B0 /* PlayGroundViewController.swift in Sources */,
 				BFD921AB2797D0C40058A3E9 /* AnnotationListTableViewController.swift in Sources */,
 				391E5B7B2786C4CF0060624B /* PDFPage+Selection.swift in Sources */,
 				BF61051D27BB83E5007920F6 /* PersistenceManager.swift in Sources */,
 				391E5B802786C4CF0060624B /* NonSelectablePDFView.swift in Sources */,
 				BFC914672769B75C00A55316 /* AppDelegate.swift in Sources */,
-				BF59A4BA27B0B66A00CEDF19 /* PDFViewer.swift in Sources */,
 				BFD921A92797B0130058A3E9 /* ScribbleViewModel.swift in Sources */,
 				BF61052127BB8478007920F6 /* Model.swift in Sources */,
 				391E5B7E2786C4CF0060624B /* DrawingGestureRecognizer.swift in Sources */,
 				BF59A4CA27BA20F500CEDF19 /* UserDefaultsManager.swift in Sources */,
 				391E5B7C2786C4CF0060624B /* DrawingAnnotation.swift in Sources */,
-				BF59A4BD27B0B7B800CEDF19 /* CanvasOnPdfViewController.swift in Sources */,
 				391E5B7F2786C4CF0060624B /* PDFAnnotationWithPath.swift in Sources */,
 				BFDBA16A2782E5E200CF0188 /* ScribbleViewController.swift in Sources */,
 				BFC914692769B75C00A55316 /* SceneDelegate.swift in Sources */,
-				BF59A4BF27B0B7BD00CEDF19 /* PDFCanvasViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

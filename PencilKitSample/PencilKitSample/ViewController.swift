@@ -16,9 +16,6 @@ final class ViewController: UIViewController {
     
     private enum SegueType: String, CaseIterable {
         case scribble = "ScribbleViewController"
-//        case canvasOnPdf = "CanvasOnPdfViewController"
-//        case pdfCanvas = "PDFCanvasViewController"
-        case playGround = "PlayGroundViewController"
     }
     
     private let disposeBag = DisposeBag()
@@ -68,8 +65,6 @@ final class ViewController: UIViewController {
     private lazy var tableBinder: (IndexPath) -> Void = { [weak self] indexPath in
         if case .scribble = SegueType.allCases[indexPath.row] {
             self?.navigationController?.pushViewController(ScribbleViewController(), animated: true)
-        } else if case .playGround = SegueType.allCases[indexPath.row] {
-            self?.navigationController?.pushViewController(PlayGroundViewController(), animated: true)
         }
     }
     
