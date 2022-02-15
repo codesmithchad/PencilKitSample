@@ -114,16 +114,6 @@ final class ScribbleViewController: UIViewController {
         restore.forEach({[weak self] restoreData in
             self?.pdfView.currentPage?.addAnnotation(restoreData)
         })
-        
-//        guard let currentPage = pdfView.currentPage?.pageRef?.pageNumber else { return }
-//        let annotations = viewModel.fetchCurrentAnnotation(currentPage, row)
-//        annotations.forEach({ [weak self] restoreData in
-//            self?.pdfView.currentPage?.addAnnotation(restoreData)
-//        })
-        // FIXME: todo
-//            self?.restoreAnnotation(self?.viewModel.getCurrentAnnotations(currentPage)[row].annotation)
-        
-//        viewModel.fetchAnnotations(row)
     }
     // - erase
     private func eraseCurrentAnnotation() {

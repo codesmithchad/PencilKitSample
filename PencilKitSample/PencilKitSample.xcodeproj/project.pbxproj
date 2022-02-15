@@ -27,8 +27,7 @@
 		BF61051F27BB844B007920F6 /* LoopableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF61051E27BB844B007920F6 /* LoopableExtension.swift */; };
 		BF61052127BB8478007920F6 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF61052027BB8478007920F6 /* Model.swift */; };
 		BF61052327BBA0F1007920F6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = BF61052227BBA0F1007920F6 /* README.md */; };
-		BFB7C0A927798B6D005778B0 /* Differentiator in Frameworks */ = {isa = PBXBuildFile; productRef = BFB7C0A827798B6D005778B0 /* Differentiator */; };
-		BFB7C0AB27798B6D005778B0 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = BFB7C0AA27798B6D005778B0 /* RxDataSources */; };
+		BF61052627BBA5D7007920F6 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = BF61052527BBA5D7007920F6 /* RxDataSources */; };
 		BFC914672769B75C00A55316 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC914662769B75C00A55316 /* AppDelegate.swift */; };
 		BFC914692769B75C00A55316 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC914682769B75C00A55316 /* SceneDelegate.swift */; };
 		BFC9146B2769B75C00A55316 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC9146A2769B75C00A55316 /* ViewController.swift */; };
@@ -101,9 +100,8 @@
 				BF07484E277064AF00D0C3B3 /* Then in Frameworks */,
 				BF0748432770648100D0C3B3 /* RxRelay in Frameworks */,
 				BF0748482770649000D0C3B3 /* RxGesture in Frameworks */,
-				BFB7C0A927798B6D005778B0 /* Differentiator in Frameworks */,
 				BF0748412770648100D0C3B3 /* RxCocoa in Frameworks */,
-				BFB7C0AB27798B6D005778B0 /* RxDataSources in Frameworks */,
+				BF61052627BBA5D7007920F6 /* RxDataSources in Frameworks */,
 				BF0748512770652000D0C3B3 /* Thoth in Frameworks */,
 				BF07484B277064A300D0C3B3 /* SnapKit in Frameworks */,
 			);
@@ -241,8 +239,7 @@
 				BF07484A277064A300D0C3B3 /* SnapKit */,
 				BF07484D277064AF00D0C3B3 /* Then */,
 				BF0748502770652000D0C3B3 /* Thoth */,
-				BFB7C0A827798B6D005778B0 /* Differentiator */,
-				BFB7C0AA27798B6D005778B0 /* RxDataSources */,
+				BF61052527BBA5D7007920F6 /* RxDataSources */,
 			);
 			productName = PencilKitSample;
 			productReference = BFC914632769B75C00A55316 /* PencilKitSample.app */;
@@ -322,7 +319,7 @@
 				BF074849277064A300D0C3B3 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				BF07484C277064AF00D0C3B3 /* XCRemoteSwiftPackageReference "Then" */,
 				BF07484F2770652000D0C3B3 /* XCRemoteSwiftPackageReference "Thoth" */,
-				BFB7C0A727798B6D005778B0 /* XCRemoteSwiftPackageReference "RxDataSources" */,
+				BF61052427BBA5D7007920F6 /* XCRemoteSwiftPackageReference "RxDataSources" */,
 			);
 			productRefGroup = BFC914642769B75C00A55316 /* Products */;
 			projectDirPath = "";
@@ -785,12 +782,12 @@
 				kind = branch;
 			};
 		};
-		BFB7C0A727798B6D005778B0 /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
+		BF61052427BBA5D7007920F6 /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
+				branch = main;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -831,14 +828,9 @@
 			package = BF07484F2770652000D0C3B3 /* XCRemoteSwiftPackageReference "Thoth" */;
 			productName = Thoth;
 		};
-		BFB7C0A827798B6D005778B0 /* Differentiator */ = {
+		BF61052527BBA5D7007920F6 /* RxDataSources */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = BFB7C0A727798B6D005778B0 /* XCRemoteSwiftPackageReference "RxDataSources" */;
-			productName = Differentiator;
-		};
-		BFB7C0AA27798B6D005778B0 /* RxDataSources */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BFB7C0A727798B6D005778B0 /* XCRemoteSwiftPackageReference "RxDataSources" */;
+			package = BF61052427BBA5D7007920F6 /* XCRemoteSwiftPackageReference "RxDataSources" */;
 			productName = RxDataSources;
 		};
 /* End XCSwiftPackageProductDependency section */

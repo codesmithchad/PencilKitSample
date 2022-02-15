@@ -5,9 +5,9 @@
         "package": "RxDataSources",
         "repositoryURL": "https://github.com/RxSwiftCommunity/RxDataSources",
         "state": {
-          "branch": null,
-          "revision": "90c29b48b628479097fe775ed1966d75ac374518",
-          "version": "5.0.2"
+          "branch": "main",
+          "revision": "f671317335633fe9396fd3522dca1f5e64fc29c1",
+          "version": null
         }
       },
       {
